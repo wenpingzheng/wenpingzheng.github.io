@@ -1,7 +1,9 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2015-10-15 11:53:30
+title :  "文章标题1"
+date  :   2015-10-15 11:53:30
+img   : "../assets/images/1.png"
+intro : "这些是文章的内容简介q..."
 categories: jekyll update
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
