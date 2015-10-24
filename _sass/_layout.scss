@@ -208,9 +208,11 @@
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 25px;
     letter-spacing: -1px;
     line-height: 1;
+    font-weight: bold;
+    color: $title-color;
 
     @include media-query($on-laptop) {
         font-size: 36px;
@@ -242,5 +244,11 @@
         @include media-query($on-laptop) {
             font-size: 18px;
         }
+    }
+    .title{
+        display: block;
+        background: $title-background;
+        color: $title-color;
+        font-weight:bold;
     }
 }
