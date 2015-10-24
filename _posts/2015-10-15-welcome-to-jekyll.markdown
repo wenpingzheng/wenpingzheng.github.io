@@ -1,27 +1,30 @@
 ---
 layout: post
-title :  "文章标题1"
+title :  "HH English"
 date  :   2015-10-15 11:53:30
 img   : "../assets/images/1.png"
-intro : "这些是文章的内容简介q..."
+intro : "Celebrate with Family and Friends--He is turning sixteen years old so it is a big deal for him because he can now get his driver's license. We are having a family dinner with his favorite foods and then a big birthday cake. He is also..."
 categories: jekyll update
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+>Dealing with the Weather
 
-Jekyll also offers powerful support for code snippets:
+* What is the weather like outside?
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+* I went out for lunch it was `raining`, I had a problem beacause I did not bring an unbrella.
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+* `I don't like` the rain, but I don't mind the `snow`, it's rarely snows around here.
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+* I agree, we have not had much snow this `winter`. I prefer the `fall`, When the tree leaves are full of color and the air is cool.How is weather in your country?
+
+* I am from `brazial`.Where it's warm most of the year.Summary is my favorite season.I love hot weather and being able to go to the beach.
+
+* Sounds nice.Do you know what the weather is going to be over the weekend.
+
+* Well, it's suppose to be sunny tomorrow. but `cloudy` on `thursday`. but I don't know about the weekend.
+
+---
+
+
+
+
