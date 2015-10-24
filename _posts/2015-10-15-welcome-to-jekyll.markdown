@@ -11,17 +11,17 @@ categories: jekyll update
 
 * What is the weather like outside?
 
-* I went out for lunch it was `raining`, I had a problem beacause I did not bring an unbrella.
+* Well, when I went out for lunch it was `raining`. I had a problem beacause I did not bring an umbrella.
 
-* `I don't like` the rain, but I don't mind the `snow`, it's rarely snows around here.
+* `I do not like` the `rain`, but `I don't mind` the `snow`, It rarely snows around here.
 
-* I agree, we have not had much snow this `winter`. I prefer the `fall`, When the tree leaves are full of color and the air is cool.How is weather in your country?
+* I agree. We have not had much snow this `Winter`. I prefer the `Fall`. When the tree leaves are full of color and the air is cool.How is <b class="error">the</b> weather in your country?
 
-* I am from `brazial`.Where it's warm most of the year.Summary is my favorite season.I love hot weather and being able to go to the beach.
+* I am from `Brazil`,where it is `warm` most of the year.<b class="error">Summer</b> is my favorite season. I love <b class="error">the</b> hot weather and being able to go to the beach.
 
-* Sounds nice.Do you know what the weather is going to be over the weekend.
+* Sounds nice! Do you know what the weather is going to be over the weekend?
 
-* Well, it's suppose to be sunny tomorrow. but `cloudy` on `thursday`. but I don't know about the weekend.
+* Well, it's <b class="error">supposed</b> to be `sunny` tomorrow. but `cloudy` on `Thursday`. I don't know about the weekend.
 
 ---
 
