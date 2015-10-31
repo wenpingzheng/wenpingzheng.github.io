@@ -2,8 +2,8 @@
 layout: post
 title :  "HH English"
 date  :   2015-10-15 11:53:30
-img   : "../assets/images/1.png"
-intro : "Celebrate with Family and Friends--He is turning sixteen years old so it is a big deal for him because he can now get his driver's license. We are having a family dinner with his favorite foods and then a big birthday cake. He is also..."
+img   : "../assets/images/hh20151031.png"
+intro : "Celebrate with Family and Friends--He is turning sixteen years old so it is a big deal for him because he can now get his driver's license. We are having a family dinner with his favorite foods and then a big birthday cake."
 categories: jekyll update
 ---
 
