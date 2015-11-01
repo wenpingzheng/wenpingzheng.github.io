@@ -3,6 +3,7 @@ layout: post
 title :  "HH English"
 date  :   2015-10-15 11:53:30
 img   : "../assets/images/hh20151031.png"
+author: "WP"
 intro : "Celebrate with Family and Friends--He is turning sixteen years old so it is a big deal for him because he can now get his driver's license. We are having a family dinner with his favorite foods and then a big birthday cake."
 categories: jekyll update
 ---
@@ -23,7 +24,34 @@ categories: jekyll update
 
 * Well, it's <b class="error">supposed</b> to be `sunny` tomorrow. but `cloudy` on `Thursday`. I don't know about the weekend.
 
----
+
+>Planning to Meet
+
+* Do you have any plans for tonight?
+
+* Yes. I was planning <b class="error">on going</b> to `see a movie`, and then <b class="error">going</b> `to  a nightclub`. Would you like to join me?
+
+* That sounds like fun!
+
+* Where can we meet?
+
+* We can meet at my `hotel`.
+
+* At what time?  
+
+* Well, the movie <b class="error">starts</b> at `seven` pm. so we should leave by `six` thirty.
+
+* Ok, I can pick you up. Can you give me the address?
+
+* It is at `one-hundreed` <b class="error">Washington</b> Street.
+
+* <b class="error">Okay</b>, I can give you a call when I get there. What is your phone number?
+
+* It is 213-555-8476
+
+* <b class="error">Great</b>! I will see you there.  
+
+===
 
 
 
