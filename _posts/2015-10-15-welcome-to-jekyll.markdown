@@ -51,8 +51,17 @@ categories: jekyll update
 
 * <b class="error">Great</b>! I will see you there.  
 
-===
 
+> Describe Your Daily Schedule
 
+* I `always` get up around 6am, so I can do my <b class="error">workout</b> and get the children ready for school. Then, I come to work, and drive back home around 7pm. what about you?
+
+* I `usualy` wake up early as well, I need to catch the first train to come to work. But today I overslept and had to get a car. At night, I like to go for a walk before dinner. <b class="error">Some days</b>, I go meet some friends for a drink right after work. Today, I will <b class="error">probably</b> work late to finish that project.
+
+* Hmm. I `almost nerver` go out for a drink, At night ,I `usualy` cook dinner, and watch some TV , but tonight, my husband and I are going to go to <b class="error">a</b> concert.
+
+* That sounds fun! Have a good time.
+
+* Thanks!  
 
 

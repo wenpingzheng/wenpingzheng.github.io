@@ -178,9 +178,11 @@
     > li {
         overflow:hidden;
         margin-bottom: $spacing-unit;
+        background:#fff;
+        padding:10px;
         .post-img{
             display:block;
-            width:200px;
+            width:190px;
             height:150px;
             line-height:150px;
             background:$background-img-color; 
@@ -204,7 +206,7 @@
         }
         .post-text{
             float:left;
-            width:545px;
+            width:535px;
             .post-intro{margin-bottom:0;}
         }
         &:hover{
@@ -216,6 +218,8 @@
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
+    text-align:right;
+    
 }
 
 .post-link {
