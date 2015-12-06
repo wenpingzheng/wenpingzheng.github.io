@@ -1,0 +1,130 @@
+---
+layout: get
+title :  "径向动画菜单效果"
+date  :   2015-12-05 15:54:30
+img   : "../assets/images/cc20151207.jpg"
+author: "WP"
+intro : "数学知识在CSS动画中的应用。在数学理论的基础上，与CSS动画技巧完美结合，实现令你耳目一新的径向菜单展开效果。这篇文章会从理论分析，实现原理，最后将代码展示出来供参考。"
+categories: jekyll update
+---
+
+> 实现思路
+
+首先新建一个`200*200`的DOM容器，设置为相对定位。然后根据这公式`x=r+r.cos()`,`y=r-rsin()`计算出这个容器中第一个点的的左上角相对于容器左上角的位置。在使用`transform:translative(-50%,-50%)`,让中心点居中。
+
+> 效果图
+
+![径向图 logo](../../../../../assets/results/cc20151207.png)
+
+> DOM结构
+
+	<div class="nav-wrap">
+		<nav>
+			<a href="#" class="nav-item1">1</a>
+			<a href="#" class="nav-item2">2</a>
+			<a href="#" class="nav-item3">3</a>
+			<a href="#" class="nav-item4">4</a>
+			<a href="#" class="nav-item2">5</a>
+			<a href="#" class="nav-item3">6</a>
+			<a href="#" class="nav-item4">7</a>
+			<a href="#" class="nav-item4">8</a>
+		</nav>
+		<a href="javascript:;" class="main-nav">点我</a>
+	</div>	
+	
+> CSS代码
+
+	.nav-wrap{
+		position:relative;
+		width:200px;
+		height:200px;
+		margin:120px auto 20px;
+		border:2px dotted #4E5061;
+		border-radius:100%;
+	}
+	
+	.nav-wrap .main-nav{
+		position:absolute;
+		left:50%;
+		top:50%;
+		transform:translate(-50%,-50%);
+		text-align:center;
+		text-decoration: none;
+		color:#fff;
+		border-radius:3px;
+		text-shadow:1px 1px 0px #000;
+		background:#15a5f3;
+		font-size:12px;
+		width:40px;
+		height:40px;
+		line-height: 40px;
+		cursor:pointer;
+	}
+	.nav-wrap nav{
+		position:absolute;
+		width:100%;
+		height:100%;
+		background-color:rgba(255,255,255,.3);
+		transform:scale(0);
+		transition:all .5s ease-out;
+		opacity:0;
+	}
+	.nav-wrap.active nav{
+		transform:scale(1);
+		opacity:1;
+	}
+	.nav-wrap nav > a{
+		position:absolute;
+		width:30px;
+		height:30px;
+		background:#f44283;
+		text-align:center;
+		line-height:30px;
+		text-decoration: none;
+		color:#fff;
+		border-radius: 3px;
+		text-shadow:1px 1px 0px #000;
+		transform:translate(-50%,-50%);
+	}
+	
+> JavaScript代码
+
+	(function(){
+		var isLocated = false;
+		$(".nav-wrap").on("click",".main-nav",function(e){
+			e.preventDefault();
+			var me = $(this),
+					navWrap = me.closest('.nav-wrap'),
+					navs = navWrap.find("nav a");
+			if(!navWrap.hasClass("active") && !isLocated){
+				// 圆的半径 radius
+				var width = navWrap.width(),
+				   radius = width/2;
+				// 圆形菜单的起始、终止角度
+				var startAngle = 0,
+					  endAngle = 360;
+				// 两个子菜单间的夹角
+				var total = navs.length,
+					  gap = (endAngle - startAngle)/total;
+	
+				/*
+				 *计算并确定各个子菜单的最终位置
+				 */
+				  $.each(navs,function(index,item){
+				 		// 当前子菜单与X轴正向的夹角（角度-》弧度）
+				 		var myAngle = (startAngle + gap*index)*(Math.PI/180);
+				 		// 计算当前子菜单相对于左上角（x,y）
+				 		//x=r+rcos() y=r-rsin()
+				 		var myX = radius + radius*Math.cos(myAngle),
+				 				myY = radius - radius*Math.sin(myAngle);
+				 		// 设置当前子菜单的位置（left,top）=(x,y);
+				 		$(this).css({
+				 			left:myX + 'px',
+				 			top:myY + 'px'
+				 		})
+				 	})
+				 	isLocated = true;
+			}
+			navWrap.toggleClass("active");
+		})
+	})()
