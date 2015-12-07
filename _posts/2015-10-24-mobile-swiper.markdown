@@ -2,7 +2,7 @@
 layout: post
 title :  "移动端滑动效果样例"
 date  :   2015-10-24 16:39:30
-img   : "../assets/images/aa20151031.jpg"
+img   : "../../../../../assets/images/aa201510311.png"
 author: "WP"
 intro : "触摸滑动已经成为移动端开发的常用功能，我们这里通过自己封装，或者直接选用轻量级的移动设备触控滑块的JS框架改写出几个常用的样例，供日后的你使用。"
 categories: jekyll update
@@ -12,7 +12,7 @@ categories: jekyll update
 
 >效果图
 
-![MacDown logo](http://wenpingzheng.github.io/assets/images/swipter-20151024.png)
+![MacDown logo](../../../../../assets/results/aa20151031.png)
 
 >说明
 
