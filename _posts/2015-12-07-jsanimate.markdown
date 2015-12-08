@@ -359,8 +359,157 @@ categories: jekyll update
 	}
 	
 	
-> 链式动画
+> 链式运动和同时运动
 
-> 同时运动
+两种动都使用一套JS代码`	move.js`。
 
+	function toFix(obj,json){
+		for(var attr in json){
+			// 1.取当前的值
+			var jCur = 0;
+			if(attr == 'opacity'){
+				jCur = Math.round(parseFloat(getStyle(obj,attr))*100);
+			}else{
+				jCur = parseInt(getStyle(obj,attr));
+			}	
+			if(jCur != json[attr]) return false;
+		
+		}
+		return true;
+	}
+	function getStyle(obj,attr){
+	if(obj.currentStyle){
+		return obj.currentStyle[attr];
+	}else{
+		return getComputedStyle(obj,false)[attr];
+	}
+	}
+	
+		
+	var alpha = 30;
+	
+	// startMove(obj,{attr1:itarget1,attr2:itarget2},fn);
+	function startMove(obj,json,fn){
+	var flag = true;
+	clearInterval(obj.timer);
+	// 30ms运行一次 for 运行三次
+	obj.timer = setInterval(function(){
+		for(var attr in json){
+	
+			// 1.取当前的值
+			var iCur = 0;
+			if(attr == 'opacity'){
+				iCur = Math.round(parseFloat(getStyle(obj,attr))*100);
+			}else{
+				iCur = parseInt(getStyle(obj,attr));
+			}
+			
+			// 2.算速度
+			var speed = (json[attr]-iCur)/8;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			
+			
+			
+			// 3.等待for循环执行完停止
+			if(iCur != json[attr]){
+				flag = false;
+				//4.设置当前值
+				if(attr == 'opacity'){
+					obj.style.filter = 'alpha(opacity):'+(iCur+speed)+')';
+					obj.style.opacity = (iCur + speed)/100;
+				}else{
+					obj.style[attr] = iCur + speed +'px';
+				}	
+			}else{
+				// 判断是否所有的属性都达到终点
+				flag = toFix(obj,json);		
+			}
+			
+		
+		}
+	
+		//5.检测停止
+		if(flag)
+		{
+			clearInterval(obj.timer);
+			if(fn){
+				fn();
+			}
+		}
+		
+	},30)
+	
+`链式运动`
+	
+	ul{
+		margin:0;
+		padding:0;
+	}
+	#li1{
+		list-style:none;
+		width:200px;
+		height:100px;
+		background:yellow;
+		margin-bottom:20px;
+		border:4px solid #000;
+		filter:alpha(opacity:30);
+		opacity:0.3;
+	}
+	<ul><li id="li1"></li></ul>
+	window.onload = function(){
+		var Li = document.getElementById("li1");
+		Li.onmouseover = function(){
+			startMove(Li,{width:400},function(){
+				startMove(Li,{height:200},function(){
+					startMove(Li,{opacity:100});
+				});
+			});
+		}
+		Li.onmouseout = function(){
+			startMove(Li,{opacity:30},function(){
+				startMove(Li,{height:100},function(){
+					startMove(Li,{width:200});
+				})
+			})
+		}
+	}
+
+`同时运动`
+
+	ul{
+		margin:0;
+		padding:0;
+	}
+	#li1{
+		list-style:none;
+		width:200px;
+		height:100px;
+		background:yellow;
+		margin-bottom:20px;
+		border:4px solid #000;
+		filter:alpha(opacity:30);
+		opacity:0.3;
+	}
+	<ul><li id="li1"></li></ul>
+	window.onload = function(){
+		var oLi = document.getElementById("li1");
+		oLi.onmouseover = function(){
+			startMove(oLi,{width:400,height:200,opacity:100},function(){});
+		}
+		oLi.onmouseout = function(){
+			startMove(oLi,{width:200,height:100,opacity:30},function(){});
+		}
+	}
+	
 > 动画案例
+
+`使用库JQuery`
+
+	$(function(){
+		$(“#move a”).mouseenter(function(){
+			$(this).find(“i”).animate({top:”-25px”,opacity:”0”},300,function(){
+				$(this).css({top:”30px”});
+				$(this).animate({top:”20px”,opacity:”1”},200);
+			})
+		})
+	})
