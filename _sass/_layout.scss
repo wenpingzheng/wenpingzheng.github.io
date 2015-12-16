@@ -213,11 +213,19 @@
            -moz-box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.2);
              -o-box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.2);
                 box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.2);
+        &:hover{
+            -webkit-box-shadow:0 0 9px 0 rgba(0, 0, 0, 0.6);
+            -moz-box-shadow:0 0 9px 0 rgba(0, 0, 0, 0.6);
+            -o-box-shadow:0 0 9px 0 rgba(0, 0, 0, 0.6);
+                box-shadow:0 0 9px 0 rgba(0, 0, 0, 0.6);
+        }
         h2{
             a{
-                color:#4c4c4c; 
+                // color:#4c4c4c; 
+                color:#458FD2;
                 &:hover{
-                    color:#828d95;
+                    // color:#828d95;
+                    color:#ea4c89;
                     text-decoration: none;
                 }
             -webkit-transition-property: background-color, color;
