@@ -1,0 +1,335 @@
+---
+layout: post
+title :  "带你玩转react-jsx"
+date  :   2015-12-31 08:05:35
+img   : "../../../../../assets/images/aa20151231.jpg"
+author: "WP"
+intro : "JSX是一种类XML语言，全称是JavaScript XML。React可以不使用JSX来编写组件，但是使用JSX可以让代码可读性更高、语义更清晰、对React元素进行抽象等等。这篇文章将让你完整认识JSX。"
+categories: jekyll update
+---
+
+这篇文章分四部分：一、什么是JSX。二、如何使用JSX。三、非DOM属性。四、总结。来使得我们快速认识JSX。
+
+# 一、什么是JSX
+
+JSX 即JavaScript XML。在JavaScript中来编写长的很像XML的语言。官方网站是https://facebook.github.io/jsx/，facebook提出的一个草案版的规范，facebook在这份规范中说明，提出这份规范的意思并不是要成为ECMAScript标准，也就是JavaScript标准。提出这份规范的目的是要规范JSX的核心语法。从而方便之后的语法扩展。以及解释器的开发。所以JSX是。
+
+**1、基于ECMAScript的一种新特性。**
+
+**2、一种定义带属性树结构的语法。**
+
+JSX不是XML或者HTML，也不是一种限制，在React中我们可以使用JSX来编写代码，也可以使用纯JavaScript来编写代码。所以说即使咱们不学JSX也可以正常玩React。然而，factbook官方推荐使用JSX来写React代码。那为什么我们要使用JSX了？下面将介绍JSX的五个特点。
+
+**类XML语法容易接受**
+
+facebook之所以把JSX的表现形式设计成类似XML形式，就是为了让大家更容易接受它。在实际的工程中，除了程序员之外，还有许多其它角色也会接触前端代码。比如设计师，测试人员等，他们有些人可能并不熟悉JavaScript，但是他们大多都熟悉XML，所以容易接受。
+
+**增强JS语义**
+
+JS本身的语义，主要体现在语言的逻辑方面。但是对于界面元素的表现，JS是比较弱的。在不使用JSX之前，大部分时候我们使用的是模板，模板其实就是一串字符串。在字符串中写什么东西就是可以的。但是模板的问题在于，它和页面的内容本身是分离的。并且模板本身是字符串，我们很难对其进行扩展。但是JSX是直接在JS的基础之上去编写XML。它的本质并不是字符串，而是JS本身。所以说它在语义上可以增强JS。
+
+**结构清晰**
+
+和第一点有点类似，使用JSX来编写代码，我们通过代码就可以知道生成的结果是什么。就像我们看HTML代码一样。
+
+**抽象程度高**
+
+抽象程度高带来的第一个好处就是React频闭掉了所有的手动的DOM操作。之所以能频闭所有的DOM操作，是因为它向上提供了一个新的抽象层。作为开发者我们只需要关注这个抽象层。
+
+抽象带来的第二个好处就是跨平台。从而诞生了react-native。为什么可以跨平台了？原因很简单，当我们使用JSX去编写的时候，其实是一种独立于平台的语法，你设计的是界面本身，React完全可以在不同平台上提供解释器。从而让我们的代码执行在不同的平台上。所以说，抽象其实是JSX的核心。
+
+**代码模块化**
+
+在传统的MVC开发中，M、V、C其实是分离的。无论是在概念上还是在实际的代码中它们三者往往都不会放在一起。但是在React中编写一个组件的时候，它的相关代码全部都放在了一起。JSX中即可以写JS逻辑，又可以写页面的结构。可以这样理解，MVC所做的事情是一个纵向的划分，而React是一个横向的划分。React将一个大的项目打散成了许多个小的项目。从而实现代码的模块化。在代码的力度变的非常小的时候，我们就可以专注于一个具体的功能，在这种情况下，把它们的代码都放在一起，更有利于理解和代码本身的组织。
+
+# 二、如何使用JSX		
+
+下面会先说一下JSX的语法，然后在通过三个实例详细说明它们在实例中怎么写。
+
+**1、JSX的语法**
+
+	var HelloMessage = React.createClass({
+		render: function(){
+			return <div className="test">Hello {this.props.name}</div>;
+		}
+	});
+	React.render(<HelloMessage name="John" />,mountNode);
+	
+上面代码图是一个非常简单的React组件。从这张图可以看出JSX其本质上就是JS。而它和JS的区别就在于可以直接在其中来编写html标签。这在普通的JS中是无法实现的，如果要实现只能采用字符串的形式来拼接标签。但在JSX中可以原生的支持HTML标签。
+
+**元素名：HelloMessage。**
+
+我们编写的每一个组件本质上也是一个HTML元素，这里我声名了一个HelloMessage元素。在最后一行，把它渲染到了mountNode中。渲染的时候使用是的标准的HTML语法。直接填写标签名，只是这个标签名是我们自定义出来的。
+
+**子节点：Hello {this.props.name}。**
+
+标签和标签之间可以有嵌套关系。就像在写HTML一样，每个标签都可以嵌套在别的标签中，每个标签也可以有很多个标签作为它的子节点。在JSX中，JSX和HTML嵌套不同的一点就是可以在子节点中使用求值表达式。上图中的子节点其实是一个文本节点。它由两个部分组成，第一个部分是Hello字符串后面跟一个空格。第二个部分是由一个大扩号扩起来的一个求值表达式，其作用是取出这个组件当中name属性的值并把它放在这个节点里和Hello+空格拼成一个完整的文本节点。
+
+**节点属性：name=“John”**
+
+节点的属性是在使用标签的时候传入进去的。也就是说我们可以把每个标签理解成一个函数，属性就是传入它的参数，在使用标签的时候指定属性和属性值，之后就可以在标签内部来获取属性。
+然而，还需要我们注意的是以下几点。
+
+**首字母大小写**
+
+React对首字母的大小写是敏感的。如果一个组件的首字母是大写，那么React就知道它是一个自定义的组件，如果首字母是小写，React会把它当成DOM的自带元素名，比如上图中的HelloMessage为自定义组件，div为DOM中的组件。如果自定义组件首字母是小写，那么在render渲染的时候会出错，因为React会去DOM中寻找这个组件，很显然，这个自定义的组件并不会存在于DOM的标准组件中。
+
+**嵌套**
+
+在上图的div中我们只嵌套了一个节点，文本节点。其实可以嵌套无数层各式各样的节点，理论上都是可以的。
+
+**求值表达式**
+
+求值表达式和JSX本身没什么太大的关系，它是作为JS本身的一个特性。
+
+**驼峰命名**
+
+JSX的标签命名和函数命名使用的都在驼峰命名。
+
+**htmlFor 和 className**
+
+html标签中可以使用HTML属性和class属性。但是我们是在js的上下文中去编写HTML。html和class是JS的保留字和关键字。所以不能直接把它写在JS中。在JSX中用htmlFor和className来替换使用。tips:这两个属性名也是符合驼峰命名标准的，className显然是class名称，htmlFor返回的是标签for属性的值。
+
+**2、JSX的语法实例演示**
+
+以下是三个实例。
+
+**实例一：注释、css样式以及嵌套**
+
+> [注释]
+
+注释可以添加在两个部分，第一个部分：子节点中（标签包裹的部分）。每二个部分：属性中（标签中）。分单行注释和多行注释。具体怎么写如下所示。
+
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p
+				/*
+				comment...
+				*/
+				name="test" // set name to test
+				// set name to test
+			>Hello World{
+				/*
+				commnet...
+				comment...
+				*/
+				"hello,"
+				// comment...
+			}</p>;
+		}
+	});
+	React.render(<HelloWorld name="John" />,document.body);
+	
+效果图
+
+![MacDown logo](../../../../../assets/results/20151231/p1.png)
+
+从页面效果图中可以看出运行结果正确，因此，这样写注释没有问题。
+
+> [样式]和[嵌套]
+
+关于样式首先要定义一个样式对象，对象中的属性名同样要使用驼峰命名规则，然后把对象应用到组件中。当然，这里不能直接将样式对象写在自定义组件中，因为自定义组件最终反应到页面上的是render函数的返回值。所以只能写在render函数返回值的标签中。或者在自定义标签的外面在套一层标签。具体怎么写，如下图所示，一看便知。
+
+	var style = {
+		color : "red",
+		border:"1px #000 solid",
+		width:"300px",
+		height:"50px"
+	}
+	
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p>Hello Worldd</p>;
+		}
+	});
+	React.render(<div style={style}><HelloWorld></HelloWorld></div>,document.body);
+	
+效果图
+
+![MacDown logo](../../../../../assets/results/20151231/p2.png)
+
+**实例二：条件判断的四种写法**
+
+if语句它是一个语句不是一个表达式。所以在编写jsx的时候不能直接使用if语句。但是可以使用4种表达式来实现相同的效果。下面总结每一种方式的时候都直接上代码图和效果图，其原理相信大家一看都懂的。不在多说。
+
+> [写法一] 三元表达式
+
+	var style = {
+		color : "red",
+		border:"1px #000 solid",
+		width:"300px",
+		height:"50px"
+	}
+	
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p>Hello,{this.props.name ? this.props.name : "World"}</p>
+		}
+	});
+	React.render(<div style={style}><HelloWorld name="Li"></HelloWorld></div>,document.body);
+	
+效果图
+
+![MacDown logo](../../../../../assets/results/20151231/p3.png)
+
+> [写法二] 使用一个变量
+
+可以使用其它方式给这个变量赋值，比如函数给它赋值。
+
+	var HelloWorld = React.createClass({
+		getName:function(){
+			if(this.props.name)
+				return this.props.name
+			else
+				return "World"
+		},
+		render: function(){
+			var name = this.getName();
+			return <p>Hello,{name}</p>
+		}
+	});
+	React.render(<div style={style}><HelloWorld name="Li"></HelloWorld></div>,document.body);
+	
+效果图
+
+![MacDown logo](../../../../../assets/results/20151231/p4.png)
+
+> [写法三] 去变量，直接用函数
+
+因为函数调用本身是一个表达式，所以直接可以在大括号中调用。
+
+	var HelloWorld = React.createClass({
+		getName:function(){
+			if(this.props.name)
+				return this.props.name
+			else
+				return "World"
+		},
+		render: function(){
+			return <p>Hello,{this.getName()}</p>
+		}
+	});
+	React.render(<div style={style}><HelloWorld name="Li"></HelloWorld></div>,document.body);
+
+效果图和写法二是一样一样的，此处省去。
+
+> [写法四] 使用或运算符
+
+如果左边的值为真，那么取这个值，不在对右边进行判断，如果左边的值为假就一定会返回右边的值。和If的效果其实是一样的。从而就可以实现我们的要的效果。
+
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p>Hello,{this.props.name || "World"}</p>
+		}
+	});
+	React.render(<div style={style}><HelloWorld name="Li"></HelloWorld></div>,document.body);
+	
+同样，效果图与写法二是一样的，此处也省去了。
+
+**实例三：万能的函数表达式**
+
+这个直接上个代码，一看就明白。其目的都是为取到属性中的值。
+
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p>Hello,{
+				(function(obj){
+					if(obj.props.name)
+						return obj.props.name
+					else
+						return "World"
+				})(this)
+			}</p>
+		}
+	});
+	React.render(<div style={style}><HelloWorld name="Li"></HelloWorld></div>,document.body);
+	
+# 三、非DOM属性介绍
+
+React中有三个非DOM标准属性：key、ref和dangerouslySetInnerHTML。
+
+下面说清楚两个问题，第一个问题：为什么有非DOM属性。第二个问题：如何使用非DOM属性。
+
+**1、为什么有非DOM属性**
+
+> dangerouslySetInnerHTML：意义是在JSX中直接插入HTML代码。
+
+问题来了，为什么要用这个属性插入HTML元素，而不是在代码中直接写入了。
+
+很简单，主要是出于对代码安全的考虑。因为在有的时候无法确认要插入什么代码，也就是说这部分HTML代码是动态生成的，或者说不是由我们来编写的。然而，我们知道这样很容易产生跨站攻击。好了，不多说，因为有时候我们是需要动态写入内容的，所以React也提供了这么个属性，只是在属性名中说明是危险的，即dangerous。建议谨慎使用它。
+
+> ref：父组件引用子组件。
+
+在编写组件的时候，经常会遇到嵌套的情况。当父组件嵌套了子组件时，那么父组件引用子组件的时候就需要使用ref。这样在父组件中就可以通过ref来维护多个子组件。
+
+> key：提高渲染性能。
+
+为什么React性能好，主要是因为它去除了手动的DOM操作，而采用自动的DOM操作。而自动实现就意味着它有一套自己的算法。也就是说在页面发生变化的时候，React要应用这套算法如何高效的来修改页面，以反应出对应的变化。这个算法即为DIFF算法。
+
+React diff算法简单流程图：
+
+![MacDown logo](../../../../../assets/results/20151231/p5.png)
+
+diff算法要比较的是两个组件，React中所有东西都是组件。以上流程图一开始。比较两个节点是否相同，相同（如：div和div），不同（如：div和p）。如果检测到不同，React会直接抛去掉旧的节点，生成一个全新的节点。如果相同，接下来判断这个节点是自定义的节点还是DOM的标准节点。如果是标准节点，就进一步比较属性是否相同，比如class、id等。有属性不相同就把它相应改动过来，并不会删除整个节点。如果是自定义组件就重新渲染它。因为自定义组件存有多个状态。Rect会根据这个些状态在旧组件上做改动，仍然不会重新生成组件。然而如果给每个节点定义一个唯一标识KEY值，React就可以知道哪些节点是新添加的，哪些是删除的节点，无需要一对一的比较。
+这一点和Angular中提到的元素拥有唯一key值，提高整个页面的渲染速度是一个道理。
+
+**2、如何使用非DOM属性**
+
+以下用三个实例说明三个非DOM属性是如何使用的。
+
+> 实例一：dangerouslySetInnerHTML演示
+
+	var rawHTML = {
+		__html : "<h1>I'm inner HTML</h1>"
+	}
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <p>Hello,{this.props.name || "World"}</p>
+		}
+	});
+	React.render(<div style={style} dangerouslySetInnerHTML={rawHTML}></div>,document.body);
+
+效果图
+
+![MacDown logo](../../../../../assets/results/20151231/p6.png)
+
+看到效果图，输出意料的结果，整个代码没有问题。需要注意的是代码中rawHTML对象有一个双下划线开头的html属性。
+
+> 实例二：ref演示
+
+在p标签中加上ref属性，ref=“childp”，然后在组件代码中可以通过this.refs.childp来引用这个虚拟P元素。
+
+	var HelloWorld = React.createClass({
+		handleClick: function() {
+	    	React.findDOMNode(this.refs.myTextInput).focus();
+	    },
+		render: function(){
+			return <div>
+	    	<input type="text" ref="myTextInput" />
+	    	<input type="button" value="Focus the text input" 
+	    	onClick={this.handleClick} />
+	      	</div>;
+		}
+	});
+	React.render(<HelloWorld />,document.body);
+	
+效果图	
+
+![MacDown logo](../../../../../assets/results/20151231/p7.png)
+
+> 实例三：key演示
+
+	var HelloWorld = React.createClass({
+		render: function(){
+			return <ul>
+				<li key="1">1</li>
+				<li key="2">2</li>
+				<li key="3">3</li>
+			</ul>
+		}
+	});
+	React.render(<div style={style}></div>,document.body);
+
+# 四、总结
+
+通过以上三个部分内容的，我们知道了JSX是一个看起来很像XML的JavaScript语法扩展。React中可以使用它也可以不使它。建议使用它是因为它能定义简洁且我们熟知的包含属性的树状结构的语法。对于非专职开发者同样比较熟悉。然后我们又知道它的基本语法，和在开发中具体怎么使用。最后讲清楚了为什么JSX有三个非DOM属性以及如何使用三个非DOM属性。如果以上都搞清楚了，那这篇文章的目的达到了。
