@@ -1,7 +1,7 @@
 /**
  * Site header
  */
-.site-header {
+.site-header,.site-nav{
     width:100px;
     height:100px;
     position: fixed;
@@ -31,7 +31,13 @@
         background:rgba(0,0,0,1);
     }
 }
-
+.site-nav{
+    top:50px;
+    right:50%;
+    margin-right:385px;
+    left:auto;
+    margin-left:auto;
+}
 
 /*
 .site-title {
