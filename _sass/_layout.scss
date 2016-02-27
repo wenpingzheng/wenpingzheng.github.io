@@ -357,3 +357,54 @@
         color:red;
     }
 }
+/* 移动端 */
+#m-nav{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:46px;
+    background-color:#161616;
+}
+#m-nav .m-home{
+    height: 30px;
+    width: 60px;
+    background: #333030;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    color: #687F9C;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    text-decoration: none;
+}
+@media screen and (max-width:750px){
+    #m-nav{
+        display:block;
+    }
+    .wrapper{
+        width:95%;
+    }
+    .post-list > li .post-img{
+        width:100%;
+        text-align:center;
+        float:none;
+    }
+    .post-list > li .post-text{
+        width:100%;
+    }
+    .post-list > li h2 a{
+        font-size: 18px;
+        height: 22px;
+        line-height: 24px;
+        margin: 10px 0;
+    }
+    .post-title {
+        font-size: 25px;
+    }
+    .site-nav,.site-header{
+        display:none;
+    }
+}
