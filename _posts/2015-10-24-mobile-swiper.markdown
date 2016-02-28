@@ -16,7 +16,7 @@ categories: jekyll update
 
 >说明
 
-上面三行分别对应三种效果，这三个效果是利用轻量级移动框架[Swipter.js](http://www.swiper.com.cn/)来实现的，支持在Android2.3以上系统及ios系统上运行。运行前需要引入三个文件`swipe.min.css`、`zepto.min.js`、`swipe.min.js`。
+上面三行分别对应三种效果，这三个效果是利用轻量级移动框架[Swipter.js](http://www.swiper.com.cn/)来实现的，支持在Android2.3以上系统及ios系统上运行。运行前需要引入三个文件swipe.min.css、zepto.min.js、swipe.min.js。
 
 >代码-DOM
 
