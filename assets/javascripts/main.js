@@ -1,4 +1,8 @@
 $(function(){
+	var nEvent = function(){
+		var e = window.event || event;
+		e.preventDefault();
+	};
 	var navList = $(".post-list");
 	var navMain = $(".site-nav");
 	navMain.find("a").each(function(index,obj){
