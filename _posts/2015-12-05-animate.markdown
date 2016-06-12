@@ -1,5 +1,5 @@
 ---
-layout: get
+layout: post
 title :  "径向动画菜单效果"
 date  :   2015-12-05 15:54:30
 img   : "../assets/images/cc20151207.jpg"

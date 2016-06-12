@@ -1,5 +1,5 @@
 ---
-layout: get
+layout: post
 title :  "jQuery常用代码段"
 date  :   2015-11-16 15:54:30
 img   : "../assets/images/aa20151116.png"
