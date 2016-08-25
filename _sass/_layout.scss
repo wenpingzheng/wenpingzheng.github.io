@@ -254,15 +254,15 @@
         }
         .post-img{
             display:block;
-            width:200px;
-            height:150px;
+            width:100px;
+            height:50px;
             background:$background-img-color; 
             float:left;
             margin-right:$img-right;
             overflow:hidden;
             img{
-                width:200px;
-                height:150px;
+                width:100px;
+                height:50px;
                 -webkit-transition: all .25s linear .1s;
                    -moz-transition: all .25s linear .1s;
                     -ms-transition: all .25s linear .1s;
@@ -279,7 +279,7 @@
         }
         .post-text{
             float:left;
-            width:515px;
+            width:615px;
             .post-intro{margin-bottom:0;color:#737373;}
         }
         &:hover{
@@ -390,6 +390,7 @@
     }
     .post-list > li .post-img{
         width:100%;
+        height:150px;
         text-align:center;
         float:none;
     }
@@ -410,5 +411,6 @@
     }
     .post-list > li .post-img img{
         width:100%;
+        height:150px;
     }
 }
