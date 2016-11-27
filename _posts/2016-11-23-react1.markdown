@@ -1,0 +1,510 @@
+---
+layout: post
+title :  "React全栈-上篇"
+date  :   2016-11-23 11:15:35
+img   : "../../../../../assets/images/20161127.png"
+author: "WP"
+intro : "三角形所解决的问题是能够让文字区域显示的更美观，主要针对移动端，平时有一种处理办法就是直接在后面拼一个三角图案，这种效果在IPHONE上测试没有问题，但在Android上看就会有1像素的差距，面对这种问题，如何理解另一种解决方案。"
+categories: react
+---
+		
+探索是人类的基因，不探索新技术最后的下场就会很尴尬，下面就总结一下我们在不断变化的前端世界里如何驾驭一种新的开发思维。
+React及React生态圈那点东西
+
+所谓前端，就是不断向前发展，哈哈，在发展的路上，总会有一些新的东西出现，React就是其中之一。
+在做React项目的时候，我们很可能是直接拿线上项目做迁移。这样一来，对里面的枝枝叶叶就会产生很多疑问，？？and why。希望这三篇（上篇、中篇、下篇）文章能给你一个很好的参考作用，如果能解答你心中疑问，那将是我最开心的事。
+tips：为什么要分三篇，一是内容多，我认为学习react使用还是需要了解一些知识为前提的。二是短内容更容易把握整篇文章中心。主要是写的时候不犯困
+上篇—前端处理模块化的现状
+提前说明，“腾讯智推”项目是使用ES2015标准及Webpack做构建工具开发的。如果还没使用过的同学，别担心，文中我会说明为什么使用及如何使用，可以说你躺着也能学会了而且保证你会爱上它。所以ES2015 、组件化、Webpack......都属于需要提前准备的技术。开始享受属于你的时间......
+
+本文阅读大纲：
+
+ 1、ES6正在弥补JS语言上的缺陷
+ 
+ 2、聊一聊前端组件、包管理、构建
+ 
+ 3、webpack怎么玩
+ 
+ 4、总结
+
+=======================================
+
+##一、ES6正在弥补JS语言上的缺陷
+【不信的话，请您住下阅读】
+
+**===const、let关键字===**
+
+全端人民都知道，在JavaScript中，变量默认是全局性的，只存在函数级作用域，声明函数曾经是创作作用域的唯一方式。也就是讲，在前端娃娃的脑海里是不存在块级作用域的，像if/else等这些“笼子”是根本关不住变量这些“鸟”的，然而，ES6标准中let修复了JS中的这一缺陷。
+看个栗子
+	
+	if(true) {
+	    let a = 'wenping';
+	}
+	console.log(a);  // a is not defined
+	
+没有问题，和意想的结果一样，就在这个时候，我端仔细一看，有了个let，干嘛还要制定一个const。原来它是用来定义一个常量，一旦定义以后不可以修改，但如果是引用类型的话，可以改变它的属性。
+
+看个栗子
+
+	const myname = 'wenping';
+	myname = 'wp';
+	// "CONSTANT"  is read-only
+	const myname = {foo:'wenping'};
+	myname.foo = 'wp';
+	// 正常运行
+
+**===函数===**
+
+1、箭头函数永远是匿名的，......
+看个栗子
+
+	let add = (a,b) => {return a+b};
+	// 等同于
+	let add = function(a, b){
+	    return a+b;
+	}
+
+2、this在剪头函数中指向的是亲爹，......
+
+比如：
+
+	let age = 2;
+	let kitty = {
+	    age:1,
+	    grow:function(){
+	        setTimeout(function(){
+	            console.log(++this.age); 
+	       },100)
+	   }
+	}
+	kitty.grow();// 3
+	
+若是想得到2的结果，大家可能都这么去做，使用hack(在grow方法中定义一个const self = this,console.log中变成++self.age);
+
+然而，当有了ES6的箭头函数，一切都变的简单多了。
+
+上面代码的相同功能实现简写如下：
+
+	let kitty = {
+	    age:1,
+	    grow:function(){
+	       setTimeout(() => {
+	            console.log(++this.age); // 2
+	       },100);
+	   }
+	}
+	
+是不是很简洁、简单、简直、简略、简.....
+
+3、函数默认参数定义一步到位，......
+
+当一个函数所传的参数不确定是否存在的时候，一般我们会往函数开头"塞"一行这样的代码
+
+	value = value || [] 
+	
+当程序变得复杂之后，这种hack也就成了一种心里负担。
+
+然而，ES6很轻松的处理了这个问题
+
+	function desc(name = 'Peter',age=5) {
+	    return name + 'is' + age + 'years old';
+	}
+	desc();// Peter is 5 years old
+	
+关于函数还有一个"三点"隐形传参的事， 所谓的“三点”在ES6中称展开操作符，下面会详细一下。
+
+*===展开操作符===*
+
+1、函数调用变的简单，......
+
+在JS中想让一个函数把一个数组依次作为参数调用，很可能就是这么去写：
+
+	function test(x,y,z){
+	    console.log(x,y,z);
+	}
+	let arr = [1,2,3];
+	test.apply(null,arr);
+	//  这个时候x,y,z分别输出1、2、3
+	
+看看这个问题ES6是怎么处理的。
+
+	test(...arr); 
+
+楼上妹子表情有点夸张，效果仅当参考......
+
+2、合并数组有新招，......
+
+三点改变了处理数组的方式，比如你要组建一个具有新元素的数组，前端的我们都会想到用切分（splice）、合并（concat）、塞入（push）。
+
+看一下ES6如何处理
+
+	let  arr1 = [1,2,3];
+	let arr2 = [4,5,6];
+	let arr3 = [...arr1, ...arr2];
+	console.log(arr3);
+	// [1,2,3,4,5,6]
+	
+呵呵，觉得简单的可以点个赞。
+
+*===字符串拼接更清晰===*
+
+来看看这个让我端人员看着别扭的，每次都要想办法写的尽量好看的字符串拼接问题。ES6是这样处理的：
+
+变量拼接：
+
+	let name = 'wpzheng';
+	let a = `My name is ${name}`;
+	console.log(a);// My name is wpzheng
+	
+折行串拼接：
+
+	let a = `My name is wpzheng
+	My name is wpzheng
+	My name is wpzheng`;
+	console.log(a);// My name is wpzheng*3
+	
+虽然以上一憋气写了这么多，但是ES6貌似还有个精华点没有提到......
+
+$类和模块$
+
+$代表价值， 通俗的讲就是钱。值得重点分析一下的东西我都习惯用$包起来。——这句话好像有点多余。
+
+其实我想说类和模块的理解对后面理解react编码非常重要，毕竟这里总结ES6并非因学习ES6，而是理解和熟悉
+
+*===类和模块===*
+
+众人都知，在JavaScript的世界里是没有传统类的概念的。它使用原型链的方式来完成继承。而这种方式总让人觉得怪怪的。没有class来的清晰易理解。
+
+ES6用class定义类实现继承如下：
+
+*类*
+
+	class Animal() {
+	    // 构造函数
+	    constructor(name, age) {
+	          this.name = name;
+	          this.age = age;
+	    }
+	    // 公有方法
+	    shout() {
+	        return `My name is ${this.name}, age is ${this.age}`;
+	     }
+	    // 静态方法
+	    static foo() {
+	        return `Here is a static method`;
+	     }
+	}
+	// 使用
+	const cow = new Animal('betty',2);
+	cow.shout();
+	// My name is betty, age is 2
+	Animal.foo();
+	//Here is a static method
+
+*继承*
+
+	class Dog extends Animal {
+	    constructor(name,age = 2,color='black') {
+	        //在构造函数中直接调用 super方法
+	    super(name,age);
+	    this.color = color;
+	   }
+	   shout() {
+	        return super.shout() + `,color is ${this.color}`;
+	   }
+	}
+	const jackTheDog = new Dog('jack');
+	jackTheDog.shout();
+	//"My name is jack,age is 2,color is black"
+	
+这里我认为主要要理解的是的super方法，其它都似曾相识。我的理解是，super指的是父元素的引用，相当于父元素的this。构造函数中使用super相当于实现了继承。在非构造函数中不能使用super方法，但可以采用super(). +   方法名字调用父类的方法。
+
+前端模块概念
+
+我是这么理解的，正因为前端业务变的越来越复杂，促使前端越来越趋于工程化的开发，模块就是工程化的最小单元，记得一年前，我们做项目都使用Require.js，它所推崇的是AMD格式开发，之后开始研究Node.js，它使用的是CommonJS格式，当然，不管使用的是哪种格式，它们都是以模块为单元进行开发的，再后来，出现了browserify、webpack。这两个工具的作用就是将模块化的JS进行编译、转换、合并，最后生成浏览器能够解析的代码。由此，我们来看一下，ES6模块化JS怎么定义的：
+
+一个导出：
+
+	// hello.js
+	function hello(){
+	    console.log('hello');
+	}
+	export hello;
+	// main.js
+	import { hello } from './hello';
+	hello();// hello
+	多个导出：
+	// hello.js
+	export const PI = 3.14;
+	export function hello(){
+	    console.log('hello');
+	}
+	export let preson = {name:'viking'};
+	// main.js
+	导出可以这么写
+	import {PI, hello, person} from './hello';
+	也可以这么写
+	import * as util from './hello';
+	console.log(util.PI);
+	默认导出：
+	ES6使用default关键字来实现模块的默认导出
+	// hello.js
+	export default function(){
+	    console.log('hello ES6');
+	}
+	// main.js
+	import hello from './hello';
+	hello();// hello ES6;
+	
+到这里，ES6要说的，差不多写完了，如果觉得不完整不详细，那就对了，因为此篇只是作为总结React的开头篇
+
+做人有野心，才能知其难为而勉力为之，做人有野心，才能知其必为而拼力为之，做人野心，才能知其可为而全力为之......
+
+*【使用Babel】*
+
+在JavaScript这门语言不断发展同时，它需要面对的一个事实是浏览器的多样性存在。新的语语言写法（其实就是指ES6）不一定会被某些浏览器认识，所以就有了这些中间件（这里说的是Babel），它的作用也就很明显了，就是一个JS编译器，把ES6代码编译成ES5代码。好处是我们可以快乐轻松的在代码世界里使用ES6诙谐剩下人生中的每一行代码 。
+
+##二、聊一聊前端组件、包管理、构建
+
+*【组件】*
+
+先区分一下模块module和组件component。
+
+此文上面谈到了JavaScript的模块写法，由此可以看出，模块大多指是的语言层面的，往往表现为一个单独的JS文件，对外暴露一些属性和方法。
+
+而前端组件则更多的是指业务层面的，可以看成是一个可以独立使用的功能。组件可能是一个模块，也可能是多个模块，总之，组件化是以模块化方案为基础。
+
+正因为现在的打包工具（browserify、webpack）允许我们将一般的资源视作与JavaScript平等的模块，并以一致的方式加载进来。所以我们组件化开发的项目结构可以这样去组织：
+
+	foo/
+	    - img/
+	    - index.js
+	    - style.scss
+	bar/
+	...
+	其中index.js如下
+	require('./style.less');
+	const bar = require('./bar);
+	module.exports = function(){
+	    ......
+	}
+	
+*【包管理】*
+
+前端围绕着node，开始搞全栈。其中npm作为目前前端最为流行的包管理工具，深受大家的喜爱，前端几乎所有的框架和库在其上面都有注册。同时，许多浏览器场景应用的包，也可以使用CommonJS或者ES6模块开发了。
+
+本项目下安装
+
+	npm install lodash
+	
+当命令运行完毕以后，它会在当前目录下生成一个node_moudle文件夹，并且将要安装的模块下载到这个文件夹中。
+
+全局安装
+
+还有一类命令行工具类的模块你需要进行全局安装
+
+	npm install -g jshint
+
+在实际项目中，往往依赖的不只是一个包，而是多个包，这个时候就可以写一个配制文件，然后执行npm install统一安装。这个配制文件叫package.json。
+
+这个配制里可以定义两个类型的包：
+
+dependencies： 在生产环境中需要依赖的包。
+
+devDependencies：仅在开发和测试环节需要依赖的包。
+
+这里可以手动往package.json添加这些安装包信息，然后统一安装，也可以使用命令行一个个安装：
+
+npm install XXX --save           //  生产
+
+npm install XXX --save-dev  // 开发和测试
+
+![MacDown logo](../../../../../assets/results/20161127/5.png)
+
+*【构建】*
+
+在前端项目中会遇到各种各样的任务，比如说压缩合并代码，验证代码格式，测试代码，监视文件是否有变化等。这些任务构建工具能帮我们处理好。
+
+记得两年前我们都使用grunt作用构建工具，grunt具有非常完善的插件机制。配置文件Gruntfile.js核心大概是这样的：
+	
+	grunt.initConfig({
+	    jshint：{
+	       src：‘src/test.js'
+	   }，
+	   uglify：{
+	       build：{
+	            src：‘src/test.js’，
+	            dest：‘build/test.min.js'
+	       }
+	   }
+	})
+	
+行业总是在不断的变化，总会有更好的东西来取代现有的方案，没有最好只有更好，说的就是一种不断超越的精神。
+
+gulp吸取了Grunt优点，通过流的（Stream）的概念来简化多个任务之间的配置和输出。配置文件
+
+gulpfile.js核心大概是这样的：
+
+	var gulp = require('gulp');
+	var uglify = require('gulp-uglify');
+	// 定义compress任务，压缩代码
+	gulp.task('compress', function(){
+	    return gulp.src('src/test.js')
+	    .pipe(uglify())
+	    .pipe(gulp.dest('build'));
+	})
+	gulp.task('default',['compress']);
+
+相比grunt,gulp配置更简单，并且实现更清晰明了。
+
+同时，正因为有了模块化打包工具（browserify、webpack）,将浏览器不支持的模块进行编译、转换、合并，并且最后生成浏览器可以运行的代码，才使我们能够毫无顾虑的使用es6的模块化编程。
+
+webpack支持AMD和CommonJS类型，通过loader机制可以使用es6的模块格式。当然，它也提供了非常丰富的功能，接下来我会专门谈一下我对webpack的理解，希望对大家有用。
+
+##三、webpack怎么玩
+
+要总结一个工具，我觉得最重要的一点是说清楚它能做什么，怎么做。
+
+正因为前端项目变得越来越复杂，构建系统已成了一个不可或缺的部分，而模块打包正是构建系统的核心。webpack正是一个为前端模块打包构建而生的工具。它既吸取了大量已有方案的优点和教训，也解决了很多前端开发过程中已存在的痛点，如代码的拆分与异步加载、对非JavaScript资源的支持等。（这里现有方案主要是指RequireJS和browserify）
+
+*===安装===*
+
+webpack安装很简单，由于在项目中webpack只是一个构建工具的角色，不是代码依赖，所以应该安装在dev-dependencies中。
+
+	npm install webpack --save-dev
+
+假如模块文件hello.js如下：
+
+	exports.modles = "hello world!";
+
+假如项目的入口文件index.js内容如下：
+	
+	var text = require('./hello');
+	console.log(text);
+
+通过webpack生成浏览器认识的我们最终引入到主index.html页中的文件bundle.js。
+
+	webpack ./index.js bundle.js
+
+因为，这个模块文件比较简单， 我们可以打开bundle.js文件看一下生成之后的代码，由此你就会发现在，
+webpack其实就是做了两部分工作：
+
+1、分析得到所有必需模块并合并(甚至压缩)。
+
+2、提供这些模块有序和正常执行的环境。
+
+webpack之所以功能强大，其中重要原因之一是它有强大的loaders和plugin
+
+看一下官网对loader的解释
+
+![MacDown logo](../../../../../assets/results/20161127/1.png)
+
+![MacDown logo](../../../../../assets/results/20161127/2.png)
+
+宝宝愣了，这是啥呀？？？？？
+
+loaders是作用于应用中资源文件的转换行为。它们是函数（运行在Node.js环境中），接收资源文件的源代码作用参数，并返回新的代码。举个例子，你可以通过jsx-loader将React的JSX代码转换为JS代码，从而可以被浏览器执行。
+
+就宝宝这表情，下面我写个例子：
+
+*start*
+
+先安装两个cssloader。
+	
+	npm install style-loader css-loader --save-dev
+
+编辑index.css代码
+
+	div{
+	    width:100px;
+	    height:100px;
+	    background-color:red;
+	}
+
+编辑index.js代码码
+
+	require('style!css!./index.css'); // xxx!表示指定特定的loader
+	document.body.appendChild(document.createElement('div'));
+
+执行命令webpack ./index.js bundle.js
+
+最后在入口文件.html中引入bundle.js看是否起作用。
+
+*end*
+
+很明显上面这种指定xxx!的做法不科学，所以接下来说一下webpack配制文件package.json。
+
+说一下插件（plugin）:
+
+插件的存在可以看成是为了实现那些loader实现不了或不适合在loader中实现的功能，比如，自动生成项目的HTML页面（HtmlWebpackPlugin）等。
+
+插件分webpack内置和独立安装包两种形式，内置的插件可以通过webpack直接引用。独立安装包的插件需要先通过npm安装，然后在配制文件里引入。
+
+如：
+
+	npm i html-webpack-plugin@1.7.0 --save-dev  // 如果不带@默认会安装最新版本
+
+在配制文件webpack.config.js中引入
+
+	var HtmlWebpackPlugin = require('html-webpack-plugin');
+	
+![MacDown logo](../../../../../assets/results/20161127/3.png)
+
+*===配制===*
+
+webpack支持Node.js模块格式的配置文件，默认会使用当前目录下的webpack.config.js，配置文件只需要
+
+export的一个配置信息对象即可，如下
+
+module.exports = {
+}
+
+配置文件内容大概就是输入、输出、loaders、插件引入。
+
+![MacDown logo](../../../../../assets/results/20161127/4.png)
+
+
+*===运行===*
+
+在开发的时候，如果每一次小的改动都要手动执行一遍构建才能看到效果的话，那开发就会变得很烦琐。
+
+webpack提供了两种方式来时时响应变化。
+
+1、watch:
+
+运行webpack -w
+
+通过添加--watch选项即可开启监视功能，webpack会首先进行一次构建，然后依据构建得到的依赖关系，对项目所依赖的所有文件进行监听，一旦发生改动则触发重新构建。
+
+2、webpack-dev-server
+
+使用webpack-dev-server需要额外安装webpack-dev-server包。
+
+	npm install webpack-dev-server -g
+
+然后直接启动
+	
+	webpack-dev-server
+
+webpack-dev-server默认会监听8080端口，因此直接在浏览器里打开http://localhost:8080，即可看到结果页面。
+
+##四、总结
+
+全篇就是围绕前端模块化为中心一气呵成，没想到这么快就结尾了，结尾说点啥了？？？？
+
+
+这样吧......
+
+记不清是哪天在频道页卡消磨时间的时候，看到一句于丹老师的名言：
+
+![MacDown logo](../../../../../assets/results/20161127/6.png)
+
+对了，我的爱情不算浪漫。
+
+
+
+
+
+
+
+
