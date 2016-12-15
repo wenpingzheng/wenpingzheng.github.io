@@ -1,6 +1,9 @@
 /**
  * Site header
  */
+.site-header{
+    display:none;
+}
 .site-header,.site-nav{
     width:100px;
     height:100px;
@@ -32,7 +35,7 @@
     }
 }
 .site-nav{
-    top:50px;
+    top:71px;
     right:50%;
     margin-right:385px;
     left:auto;
@@ -189,7 +192,7 @@
  * Page content
  */
 .page-content {
-    padding: 50px 0;
+    padding: 71px 0;
     img{
         // width:300px;
     }
@@ -359,20 +362,19 @@
 }
 /* 移动端 */
 #m-nav{
-    display:none;
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:46px;
-    background-color:#161616;
+    height:56px;
+    background-color:#ffffff;
     z-index:10;
 }
 #m-nav .m-home{
+    display:none;
     height: 30px;
     width: 60px;
     background: #333030;
-    display: inline-block;
     text-align: center;
     line-height: 30px;
     color: #687F9C;
@@ -384,6 +386,9 @@
 @media screen and (max-width:750px){
     #m-nav{
         display:block;
+        height:46px;
+        background-color:#161616;
+        display:inline-block;
     }
     .wrapper{
         width:95%;
