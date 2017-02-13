@@ -10,7 +10,7 @@ categories: node
 		
 >repl(Read-eval-print-loop)：交互式解析器
 
-##一、Node解析环境基本操作（理解：内置使用模块不需要加载）
+## 一、Node解析环境基本操作（理解：内置使用模块不需要加载）
 
 1、命令窗口输入node，即进入了REPL环境
 
@@ -24,7 +24,7 @@ categories: node
 
 ![](../../../../../assets/results/20170213/1.png)
 
-##二、Node读写文件（理解：内置使用模块需要加载）
+## 二、Node读写文件（理解：内置使用模块需要加载）
 
 以下返回数据是以十六进制输出的，为了得到正常数据，用toString方法
 `test.js`
@@ -44,7 +44,7 @@ categories: node
 
 	node test.js
 
-##三、global的属性和方法在node中，没有window，global相当于window，是顶级对象
+## 三、global的属性和方法在node中，没有window，global相当于window，是顶级对象
 
 1、`setTimeout`：定时器，在指定秒数后执行回调函数，如果指定秒数为0，在执行栈完成后再执行，存储在异步队列中。
 
