@@ -81,7 +81,7 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 
@@ -128,7 +128,7 @@ blockquote {
  */
 pre,
 code {
-    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font: 16px Consolas, "Liberation Mono", Menlo, Courier, monospace;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
     background-color: #eef;

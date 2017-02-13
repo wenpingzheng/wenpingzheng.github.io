@@ -1,0 +1,84 @@
+---
+layout: post
+title :  "node的repl环境操作"
+date  :   2017-02-13 09:15:35
+img   : "../../../../../assets/images/1.png"
+author: "WP"
+intro : "Node解析环境下的基本操作，Node读写文件的基本操作，一些定时器的基本使用。"
+categories: node
+---
+		
+>repl(Read-eval-print-loop)：交互式解析器
+
+##一、Node解析环境基本操作（理解：内置使用模块不需要加载）
+
+1、命令窗口输入node，即进入了REPL环境
+
+2、输入`.exit`/连续按`ctrl+c`两次，即退出环境
+
+3、点击`tab`打印node.js中的所有对象
+
+4、向上/下查看历史命令
+
+5、`ctrl+L`清除终端
+
+![](../../../../../assets/results/20170213/1.png)
+
+##二、Node读写文件（理解：内置使用模块需要加载）
+
+以下返回数据是以十六进制输出的，为了得到正常数据，用toString方法
+`test.js`
+
+
+	var fs = require("fs")
+	fs.readFile("data.json",function(error,data){
+		if(error){
+			throw error;
+		}
+		console.log(data.toString());
+	});
+
+
+终端运行
+
+
+	node test.js
+
+##三、global的属性和方法在node中，没有window，global相当于window，是顶级对象
+
+1、`setTimeout`：定时器，在指定秒数后执行回调函数，如果指定秒数为0，在执行栈完成后再执行，存储在异步队列中。
+
+2、`setImmediate`：立即执行，在执行栈完成后再执行，存储在异步队列中，它和setTimeout时间为0的执行顺序不确定。
+
+3、`process.nextTick`:将要执行的程序放在执行栈的最后。所以比setTimeout0和setImmediate先执行。
+
+4、`setInterval`：定时器，在规定时间内重复执行  
+  
+代码：
+
+	
+	setTimeout(function () {
+	  console.log("timeout");
+	}, 0);
+	
+	setImmediate(function(){
+	  console.log("immediate");
+	})
+	
+	console.log("执行栈");
+	
+	process.nextTick(function(){
+	  console.log("添加到执行栈末尾");
+	})
+	
+
+结果：
+
+![](../../../../../assets/results/20170213/1.png)
+
+ 
+
+
+
+
+

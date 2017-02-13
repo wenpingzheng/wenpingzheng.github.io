@@ -256,7 +256,7 @@
 
         }
         .post-img{
-            display:block;
+            display:none;
             width:100px;
             height:50px;
             background:$background-img-color; 
@@ -282,7 +282,7 @@
         }
         .post-text{
             float:left;
-            width:615px;
+            width:730px;
             .post-intro{margin-bottom:0;color:#737373;}
         }
         &:hover{
@@ -328,7 +328,7 @@
     margin-bottom: $spacing-unit;
 
     h2 {
-        font-size: 32px;
+        font-size: 24px;
 
         @include media-query($on-laptop) {
             font-size: 28px;
@@ -336,7 +336,7 @@
     }
 
     h3 {
-        font-size: 26px;
+        font-size: 22px;
 
         @include media-query($on-laptop) {
             font-size: 22px;
@@ -344,7 +344,7 @@
     }
 
     h4 {
-        font-size: 20px;
+        font-size: 18px;
 
         @include media-query($on-laptop) {
             font-size: 18px;
