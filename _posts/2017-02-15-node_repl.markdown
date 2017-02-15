@@ -10,16 +10,17 @@ categories: es6
 
 ## yield	
 
-**一、yield关键字用来暂停和继续执行一个生成器函数。当外部调用生成器的next()方法时，yield关键字右侧的表达式才会执行。**
+一、yield关键字用来暂停和继续执行一个生成器函数。当外部调用生成器的next()方法时，yield关键字右侧的表达式才会执行。
 
-****
 
-**二、执行结果会转化为一个对象（包含两个属性，value和done），作为next()方法的返回传。**
 
-****
+二、执行结果会转化为一个对象（包含两个属性，value和done），作为next()方法的返回传。
 
-**三、对于`var foo= yield expression`语句，yield左侧变量foo的值将在下一次调用next()方法时获得，并且等于调用next()方法的参数**
 
+
+三、对于`var foo= yield expression`语句，yield左侧变量foo的值将在下一次调用next()方法时获得，并且等于调用next()方法的参数
+
+**下面举一个例子来说明上面三点** 仔细推敲一下
 	
 	function* numbers() {
 	    console.log('function start.');
