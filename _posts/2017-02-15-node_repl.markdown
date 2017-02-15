@@ -1,0 +1,53 @@
+---
+layout: post
+title :  "理解ES6生成器函数语法"
+date  :   2017-02-15 18:15:35
+img   : "../../../../../assets/images/1.png"
+author: "WP"
+intro : "在ES6中新增了生成器函数的语法，这里我们来解释一下生成器函数内的关键字yield"
+categories: es6
+---
+
+## yield	
+
+**一、yield关键字用来暂停和继续执行一个生成器函数。当外部调用生成器的next()方法时，yield关键字右侧的表达式才会执行。**
+****
+**二、执行结果会转化为一个对象（包含两个属性，value和done），作为next()方法的返回传。**
+****
+**三、对于`var foo= yield expression`语句，yield左侧变量foo的值将在下一次调用next()方法时获得，并且等于调用next()方法的参数**
+
+	
+	function* numbers() {
+	    console.log('function start.');
+	
+	    var v1 = yield 444;
+	    console.log('v1 = ' + v1);
+	
+	    var v2 = yield 1;
+	    console.log('v2 = ' + v2);
+	
+	    return 5;
+	}
+	
+	var nums = numbers();
+	
+	console.log(nums.next(0)); // Object {value: 444, done: false}
+	console.log(nums.next(1));
+	/*
+	v1 = 1  // 调用时的参数
+	Object {value: 1, done: false}
+	*/
+	console.log(nums.next(2));
+	/*
+	v2 = 2 // 调用时的参数
+	Object {value: 5, done: true}
+	*/
+
+
+
+ 
+
+
+
+
+
