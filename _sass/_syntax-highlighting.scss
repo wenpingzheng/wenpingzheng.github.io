@@ -2,7 +2,9 @@
  * Syntax highlighting styles
  */
 .highlight {
-    background: #fff;
+    background-color: #f6f6f6;
+    font-size:14px;
+    font-family: "Menlo,Monaco,Consolas,Courier,New,monospace";
     @extend %vertical-rhythm;
 
     .c     { color: #998; font-style: italic } // Comment

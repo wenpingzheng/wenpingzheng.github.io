@@ -128,10 +128,9 @@ blockquote {
  */
 pre,
 code {
-    font: 16px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
 }
 
 code {
@@ -140,7 +139,9 @@ code {
 
 pre {
     padding: 8px 12px;
-    overflow-x: scroll;
+    //overflow-x: scroll;
+    background-color:#f6f6f6;
+
 
     > code {
         border: 0;
