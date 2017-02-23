@@ -4,7 +4,7 @@ $(function(){
 		e.preventDefault();
 	};
 	var navList = $(".post-list");
-	var navMain = $(".site-nav");
+	var navMain = $(".hsite-nav");
 	navMain.find("a").each(function(index,obj){
 		$(this).on("click",function(){
 			var nameClass = $(this).data("class");
