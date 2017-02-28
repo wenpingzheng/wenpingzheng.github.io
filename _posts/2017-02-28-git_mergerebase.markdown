@@ -10,7 +10,7 @@ categories: git
 
 假设有一个主分支master，然后在新建一个分支dev；主分支中有一个文件1.py，1.py内容是a=1。
 
-##一、merge或者rebase之前准备工作
+## 一、merge或者rebase之前准备工作
 	
 	cd ~/desktop/gitTuT  //  开发文件依然放在桌面上
 	git branch dev // 新建一个分支
@@ -28,7 +28,7 @@ categories: git
 
 以上操作对于接下来的merge和rebase操作是一样的
 
-##二、若是merge操作
+## 二、若是merge操作
 
 	git merge dev
 	// 若有冲突，解决冲突
@@ -44,7 +44,7 @@ master：C1 C2 C3 C4
 
 dev：C1 C3
 
-##三、若是rebase操作
+## 三、若是rebase操作
 
 	git rebase dev
 	// 解决冲突 
@@ -62,7 +62,7 @@ dev：C1 C3
 
 ![MacDown logo](../../../../../assets/results/20170228/3.jpg)
 
-#四、有关于两者的区别
+## 四、有关于两者的区别
 
 第一：commit提交的时间顺序不一样
 
