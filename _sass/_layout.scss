@@ -1,4 +1,18 @@
 /**
+* nav
+*/
+.nav {
+    border-bottom:3px solid #000;
+    a{
+        color:#aaa;
+        margin:0 5px;
+    }
+    :hover{
+        color:#333;
+    }
+}
+
+/**
  * Site header
  */
 .site-header{
