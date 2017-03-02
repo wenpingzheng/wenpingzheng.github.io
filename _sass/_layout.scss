@@ -2,13 +2,14 @@
 * nav
 */
 .nav {
-    border-bottom:3px solid #000;
+    border-bottom:3px solid #ddd;
     a{
         color:#aaa;
-        margin:0 5px;
+        margin:0 10px;
     }
     :hover{
         color:#333;
+        text-decoration: none;
     }
 }
 
