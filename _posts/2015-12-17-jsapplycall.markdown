@@ -5,7 +5,7 @@ date  :   2015-12-17 10:51:35
 img   : "../../../../../assets/images/aa20151217.jpg"
 author: "WP"
 intro : "this指的是调用当前函数的对象，如果你想改变这个调用当前函数的对象，就用call，apply。而call，apply区别在于两者调用参数不一样。这篇文章会列举一些例子详细说明具体什么意思..."
-categories: jekyll update
+tag: js
 ---
 
 > 关于this

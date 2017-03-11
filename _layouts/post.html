@@ -2,13 +2,14 @@
 layout: default
 ---
 <div class="post">
-
+  <!-- 文章头部标题 -->
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
   </header>
 
-  <article class="post-content">
+  <!-- 文章内容页 -->
+  <article class="post-content article">
     {{ content }}
   </article>
 
@@ -28,5 +29,4 @@ layout: default
     })();
   </script>
   <!-- 多说公共JS代码 end -->
-
 </div>

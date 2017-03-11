@@ -1,0 +1,51 @@
+%fontsize{
+	h2,h1 {font-size: 24px;}
+	h3 {font-size: 22px;}
+	h4 {font-size: 18px;}
+}
+
+%fontmargin{
+	h2,h1 {margin: 20px 0 15px;}
+  h3 {margin:10px 0;}
+  h4 {margin:10px 0;}
+}
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// 注释说明框>xxx
+%blockquote{
+	color: $grey-color;
+  border-left: 4px solid $grey-color-light;
+  padding-left: $spacing-unit / 2;
+  font-size: 18px;
+  font-style: italic;
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// 代码样式
+%codestyle{
+	pre,
+	code {
+	  font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	  border: 1px solid $grey-color-light;
+	  border-radius: 3px;
+	}
+	pre {
+	  padding: 8px 12px;
+	  margin:10px 0;
+	  //overflow-x: scroll;
+	  background-color:#f6f6f6;
+	  > code {
+	    border: 0;
+	    line-height: 22px;
+	  }
+	}
+}

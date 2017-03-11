@@ -1,43 +1,23 @@
+
+<!-- 页面顶部导航 -->
 <div class="nav" id="m-nav">
-    <div style="
-    position:relative;
-    width: 980px;
-    margin: 0 auto;
-    height: 56px;
-    line-height: 56px;
-    display: block;">
-        <a href="{{ site.baseurl }}/"><img src="../../../../assets/images/icon.png" alt="" style="width:200px"></a>
-        <div class="hsite-nav" style="position: absolute;top:0;right:10px;">
-        <a href="javascript:void(0)" data-class="git">Git</a> 
+
+    <!-- PC页面展示元素 -->
+    <div class="nav-pc_inner">
+        <a href="{{ site.baseurl }}/" class="nav-logo"><img src="../../../../assets/images/icon.png"></a>
+        <!-- 搜索功能 S -->
+        <div class="cb-search-tool">
+            <input type="text" class="form-control cb-search-content" id="cb-search-content" placeholder="文章标题 分类标签" >
+        </div>
+        <!-- 搜索功能 E -->
+        <div class="nav-pc_tag">
+            <a href="javascript:void(0)" data-class="git">Git</a> 
             <a href="javascript:void(0)" data-class="react">React</a> 
             <a href="javascript:void(0)" data-class="angular">AngularJS</a>
             <a href="/about">关于</a>
         </div>
     </div>
 
-    <!-- <h2></h2> -->
+    <!-- Mobile页面展示元素 -->
     <a class="m-home" href="{{ site.baseurl }}/">首页</a>
-    <!-- <div class="m-bottom">
-        <ul>
-            <li><a class="" href="{{ site.baseurl }}/">首页</a></li>
-        </ul>
-    </div> -->
 </div>
-
-<header class="site-header">
-    <a class="site-title" href="{{ site.baseurl }}/">首页</a>
-    <!-- <div class="site-nav">
-      <div class="trigger"> -->
-    {% for page in site.pages %}
-    {% if page.title %}
-    <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-    {% endif %}
-    {% endfor %}
-     <!--</div>
-    </div> -->
-</header>
-<!--
-<div class="site-nav">
-    <a href="javascript:void(0)" data-class="react">React</a>
-    <a href="javascript:void(0)" data-class="angular">AngularJS</a>
-</div>-->

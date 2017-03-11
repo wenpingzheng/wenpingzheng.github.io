@@ -5,7 +5,7 @@ date  :   2016-06-11 17:15:35
 img   : "../../../../../assets/images/aa20160611.jpg"
 author: "WP"
 intro : "在ECMAScript中语法中，正则表达式是一个不可忽略的内容点，然而也就是JavaScript重要的语法内容之一，这篇文章我们来聊聊JavaScript中的正则部分。"
-categories: js
+tag: js
 ---
 
 

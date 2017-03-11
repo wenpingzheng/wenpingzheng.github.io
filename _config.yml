@@ -1,5 +1,5 @@
 # Site settings
-title: 首页
+title: 欢迎访问
 email: 569359120@qq.com
 description: > # this means to ignore newlines until "baseurl:"
   前端能力越来越大，责任也越来越大，但工作并不沉闷，好的前端在团队里应当是最阳光的。
@@ -7,5 +7,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yourdomain.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
+paginate: 10
+paginate_path: "page:num"
 # Build settings
 markdown: kramdown

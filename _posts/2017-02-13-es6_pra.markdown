@@ -5,7 +5,7 @@ date  :   2017-02-13 09:15:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
 intro : "Node解析环境下的基本操作，Node读写文件的基本操作，一些定时器的基本使用。"
-categories: node
+tag: node
 ---
 		
 >repl(Read-eval-print-loop)：交互式解析器

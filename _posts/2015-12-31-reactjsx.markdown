@@ -5,7 +5,7 @@ date  :   2015-12-31 08:05:35
 img   : "../../../../../assets/images/aa20151231.jpg"
 author: "WP"
 intro : "JSX是一种类XML语言，全称是JavaScript XML。React可以不使用JSX来编写组件，但是使用JSX可以让代码可读性更高、语义更清晰、对React元素进行抽象等等。这篇文章将让你完整认识JSX。"
-categories: jekyll update
+tag: react
 ---
 
 这篇文章分四部分：一、什么是JSX。二、如何使用JSX。三、非DOM属性。四、总结。来使得我们快速认识JSX。

@@ -5,7 +5,7 @@ date  :   2015-12-30 11:35:35
 img   : "../../../../../assets/images/aa20151230.png"
 author: "WP"
 intro : "看过React与Angular比渲染速度的话题讨论吗？这篇文章从运行效率的角度把Angular的使用细节重新总结了一下，读完它也许你会对这个话题有了自己的见解，至少又更深入的理解了Angular是如何高效开发的。"
-categories: "angular"
+tag: angular
 
 ---
 

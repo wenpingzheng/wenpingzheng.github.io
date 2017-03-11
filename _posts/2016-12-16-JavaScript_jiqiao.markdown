@@ -5,7 +5,7 @@ date  :   2016-12-16 11:15:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
 intro : "分享一些JavaScript的技巧，秘诀和最佳实践，除了少数几个外，不管是浏览器的JavaScript引擎，还是服务器端JavaScript解释器，均适用。"
-categories: js
+tag: js
 ---
 		
 **1、首次为变量赋值时务必使用var关键字**

@@ -5,7 +5,7 @@ date  :   2015-12-05 15:54:30
 img   : "../assets/images/cc20151207.jpg"
 author: "WP"
 intro : "数学知识在CSS动画中的应用。在数学理论的基础上，与CSS动画技巧完美结合，实现令你耳目一新的径向菜单展开效果。这篇文章会从理论分析，实现原理，最后将代码展示出来供参考。"
-categories: jekyll update
+tag: js
 ---
 
 > 实现思路

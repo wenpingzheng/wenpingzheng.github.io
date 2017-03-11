@@ -5,7 +5,7 @@ date  :   2017-02-15 18:15:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
 intro : "在ES6中新增了生成器函数的语法，这里我们来解释一下生成器函数内的关键字yield"
-categories: es6
+tag: es6
 ---
 
 ## yield	

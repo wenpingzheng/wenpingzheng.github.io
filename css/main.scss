@@ -1,66 +1,60 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+# Only the main Sass file
 ---
+
+/***********
+* 设置全局使用变量
+**********************/
+
 @charset "utf-8";
 
+// 公共全局变量定义
+$spacing-unit:     10px; 
 
-
-// Our variables
+// body全局变量
 $base-font-family: "Hiragino Sans GB","Microsoft YaHei",simsun;
-$base-font-size:   16px;
-$small-font-size:  $base-font-size * 0.875;
+$base-font-size:   16px; 						// body字体大小
+$small-font-size:  $base-font-size * 0.875; // 列表和文章页面日期大小
 $base-line-height: 1.5;
+$background-img:url(../assets/images/bg.png);// body背景图
+$background-color: #dfdfe1;					// body背景颜色
+
+
+// h1~h6定义变量
+$font-h-weight:600;
 
 
 
-$spacing-unit:     10px;
-
-$text-color:       #111;
-$background-img:url(../assets/images/bg.png);
-$background-color: #dfdfe1;
-$brand-color:      #2a7ae2;
+// a标签定义变量
+$text-color:       #333;      // 所有a标签hover的颜色
+$brand-color:      #aaa;     // 所有a标签默认的显示色
 $background-img-color:#fff ;
 
-$grey-color:       #828282;
+
+// img标签定义变量
+$max-img-width:480px; // 图片显示的最大宽度
+
+
+
+$grey-color:       #828282; // 代码颜色、日期颜色
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
-// Width of the content area
-$content-width:    800px;
 
-$on-palm:          600px;
-$on-laptop:        800px;
-
-$img-right:        15px;
+// 主要内容区域宽度
+$content-width:    1000px; 
 
 // 文章页面标题背景
-$title-background: #eef;
-$title-color     : #666;
-
-// 首页列表
-$first-bgcolor:#F5F5F5;
-
-
-// Using media queries with like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
-    }
-}
+$title-color     : #666; // 文章标题颜色
 
 
 
-// Import partials from `sass_dir` (defaults to `_sass`)
+
+// 依赖样式文件引入
 @import
-    "base",
-    "layout",
-    "syntax-highlighting"
+	"base",
+	"chunk",
+  "layout"
 ;
 
 

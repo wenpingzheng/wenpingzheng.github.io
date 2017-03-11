@@ -1,0 +1,90 @@
+		@media screen and (min-width: 768px) {
+            .dropdown-menu {
+				position:relative;
+                float: none;
+                font-size: 16px;
+                width: 100%;
+            }
+            .cb-search-tool 
+            {
+                position: absolute;
+                top: 8px;
+                right: 50%;
+                margin-right: -200px; 
+                width: 260px;
+                height: 40px;
+                line-height: 40px;
+            }
+            .search-animation{
+                animation:movew cubic-bezier(0, 1.07, 0.03, 0.99) 2s forwards;
+                -webkit-animation:movew cubic-bezier(0, 1.07, 0.03, 0.99) 2s forwards;
+            }
+
+            @keyframes movew
+{
+from {width:260px;}
+to {width:360px;}
+}
+
+@-webkit-keyframes movew
+{
+from {width:260px;}
+to {width:360px;}
+}
+			.cb-search-tool ul{
+                 width: 100% ;
+                 white-space:nowrap;
+                 overflow:hidden;
+                 text-overflow: ellipsis;
+             }
+            .dropdown-menu>li>a{
+                padding:3px;
+            }
+
+            .cb-search-content {
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: auto;
+                font-size: 16px;
+                height: 40px;
+                /*background-color: #eee;*/
+                color: black;
+                opacity: 1.0;
+            }
+            .form-control{
+                border-radius:30px;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            /*
+            .dropdown-menu {
+				position:relative;
+                float: none;
+                font-size: 20px;
+                width: 96%;
+                margin: 0 2%;
+            }
+			.cb-search-tool ul{
+				width: 96% ;
+				white-space:nowrap; 
+				overflow:hidden; 
+				text-overflow: ellipsis;
+			}
+
+            .cb-search-content {
+                width: 96%;
+                margin: 0 2%;
+                position: absolute;
+                top: 10%;
+                left: auto;
+                right: auto;
+                font-size: 22px;
+                height: 50px;
+                background-color: #eee;
+                color: black;
+                opacity: 1.0;
+            }*/
+        }

@@ -4,12 +4,11 @@ $(function(){
 		e.preventDefault();
 	};
 	var navList = $(".post-list");
-	var navMain = $(".hsite-nav");
+	var navMain = $(".nav-pc_tag");
 	navMain.find("a").each(function(index,obj){
 		$(this).on("click",function(){
 			var nameClass = $(this).data("class");
-			navList.find("li").hide();
-			navList.find("."+nameClass).show();
+			$("#cb-search-content").focus().val(nameClass);
 		})
 	})
 })

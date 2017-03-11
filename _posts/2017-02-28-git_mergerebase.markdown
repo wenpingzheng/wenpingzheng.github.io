@@ -5,7 +5,7 @@ date  :   2017-02-28 18:55:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
 intro : "git做为一个受大家喜爱的项目管理软件，熟练使用它变得相当重要，其中有两个命令merge和rebase作用极其相似，我们来分析一下它们之间的本质分别 "
-categories: git
+tag : Git
 ---
 
 假设有一个主分支master，然后在新建一个分支dev；主分支中有一个文件1.py，1.py内容是a=1。

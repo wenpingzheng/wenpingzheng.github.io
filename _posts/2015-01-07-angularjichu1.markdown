@@ -5,7 +5,7 @@ date  :   2016-01-07 08:15:35
 img   : "../../../../../assets/images/aa20160107.png"
 author: "WP"
 intro : "对于刚接触Angular的人来说，可能好多功能还不熟悉，例如，其中的表单控件的使用，控制器是什么，它能实现哪些功能，以及Angular开发中的模板是如何使用的等等。"
-categories: angular
+tag: angular
 ---
 
 这篇文章通过实例的方式讲四个问题。

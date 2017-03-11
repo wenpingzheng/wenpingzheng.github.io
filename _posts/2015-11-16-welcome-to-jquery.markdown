@@ -5,7 +5,7 @@ date  :   2015-11-16 15:54:30
 img   : "../assets/images/aa20151116.png"
 author: "WP"
 intro : "总结几个使用jQuery实现的常用功能，在日常的项目中或许你会经常遇到，比如：导航菜单背景切换效果，访问IFrame里的元素，管理搜索框的值，部分页面加载更新...。"
-categories: jekyll update
+tag: js
 ---
 
 > 导航菜单背景切换效果

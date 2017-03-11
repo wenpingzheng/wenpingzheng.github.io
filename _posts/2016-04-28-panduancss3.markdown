@@ -5,7 +5,7 @@ date  :   2016-01-07 08:15:35
 img   : "../../../../../assets/images/aa20160428.png"
 author: "WP"
 intro : "主要应用PC业务，兼容判断IE是否支持CSS3属性，从而做好平稳退化方案。"
-categories: css3
+tag: css3
 ---
 
 
