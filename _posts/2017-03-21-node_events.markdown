@@ -4,7 +4,7 @@ title :  "node语法-事件"
 date  :   2017-03-21 11:37:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
-intro : "Node.js大量使用事件，这也是为何Node.js是相当快相对于其他类似的技术。当Node启动其服务器，它可以简单地启动它的变量，声明的函数，然后简单地等待发生的事件"
+intro : "事件使用细节"
 tag : node
 ---
 

@@ -1,0 +1,114 @@
+---
+layout: post
+title :  "node语法-定时器"
+date  :   2017-03-21 14:48:35
+img   : "../../../../../assets/images/1.png"
+author: "WP"
+intro : "定时器使用细节"
+tag : node
+---
+
+
+## 公共函数-停止时间 
+	
+	function sleep(time) {
+		var now = new Date();
+		var end = new Date();
+		while((end-now) < time) {
+			end = new Date();
+		}
+	}
+	
+
+## 1、setTimeout
+
+	setTimeout(function(foo, bar) {
+		// 输出a b
+		console.log(foo + " " + bar);
+	},3000,'a','b');
+	
+	// 或者下面这样
+	var timeoutId = setTimeout(function(){
+		console.log('In timeout function');
+	}, 1000);
+	// 不输出任何信息
+	clearTimeout(timeoutId);
+
+## 2、setInterval
+
+	var intervalId = setInterval(function(a, b) {
+		// 第一秒钟输出aaa bbb
+		console.log(a,b);
+	},1000,'aaa','bbb');
+	
+	// 或者下面这样
+	var intervalId = setInterval(function() {
+		console.log("in interval function");
+	},1000);
+	// 不输出任何信息
+	clearInterval(intervalId);
+
+## 3、ref、unref
+
+> 开启ref() 关闭unref() 当定义有两个或两个以上的setTimeout的时候这两个方法就不起作用
+
+	var intervalId = setTimeout(function(){
+		console.log("In interval 2function");
+	},0);
+	// 不输出信息
+	intervalId.unref();
+	sleep(2000);
+	// 输出信息
+	intervalId.ref();
+	
+
+## 4、setImmediate
+
+> setImmediate 可传参数但时间不能设置 只能时间一直为0的效果（相当于setTimeout的时间为0）
+
+	var immediateId = setImmediate(function(a,b) {
+		console.log("In immediate function"+a+";"+b);
+	},"dd","bb");
+	clearImmediate(immediateId);
+	
+## 5、nextTick
+
+> process.nextTick 主线程完成之后对列的第一个执行 
+setTimout  setInterval setImmediate 都在线程中 整个是一个线程
+
+	process.nextTick(function() {
+		// 第二执行
+		console.log("process.nextTick");
+	});
+	// 第一执行
+	console.log('next');
+	
+	var immediateId = setImmediate(function(a,b) {
+		// 第三执行
+		console.log("In immediate function"+a+";"+b);
+	},"dd","bb");
+
+## 6、停止运行
+
+> 里面的程序全部走完才重新计算
+
+	setInterval(function(){
+		sleep(5000);
+	},1000)
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
