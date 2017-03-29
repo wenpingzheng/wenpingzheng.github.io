@@ -1,6 +1,6 @@
 ---
 layout: post
-title :  "node语法-事件"
+title :  "node语法-事件(event)"
 date  :   2017-03-21 11:37:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"

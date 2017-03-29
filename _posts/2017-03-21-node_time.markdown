@@ -1,6 +1,6 @@
 ---
 layout: post
-title :  "node语法-定时器"
+title :  "node语法-定时器(time-schedule)"
 date  :   2017-03-21 14:48:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
