@@ -66,6 +66,7 @@
         $("#cb-search-content").on("blur",function(){
             $(this).val("").parent().removeClass("search-animation");
         })
+        
         $.getJSON("/search/cb-search.json").done(function (data) {
             if (data.code == 0) {
                 for (var index in data.data) {
@@ -83,5 +84,7 @@
                     }
                 });
             }
-        }).error(function(data, b) { console.log("json解析错误，搜索功能暂不可用，请检查文章title，确保不含有换行等特殊符号"); });
+        }).error(function(data, b) { 
+        console.log("json解析错误，搜索功能暂不可用，请检查文章title，确保不含有换行等特殊符号");
+        });
     });
