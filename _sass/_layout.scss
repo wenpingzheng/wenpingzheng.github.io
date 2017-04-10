@@ -97,6 +97,9 @@
   /* 文章 */
   .article{
     @extend %fontmargin;
+    a{
+      color:blue;
+    }
   }
 }
 

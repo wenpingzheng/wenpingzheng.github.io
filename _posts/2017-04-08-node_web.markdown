@@ -1,0 +1,585 @@
+---
+layout: post
+title :  "node.js开发web应用基础"
+date  :   2017-04-08 08:11:35
+img   : "../../../../../assets/images/1.png"
+author: "WP"
+intro : "从两台电脑如何通信到如何搭建一个web服务器"
+tag : node
+---
+
+
+## 一、网络传输协议
+
+**两台电脑之间如何通讯**
+
+![MacDown logo](../../../assets/results/afterall/2017040801.png)
+
+其中网络传输协议又分为5个层：
+
+**应用层**：http ftp smtp
+
+tcp可以为各式种样的程序传数据，Email，www，ftp所以必须有不同的协议规定其数据格式。
+
+**传输层**：tcp udp（端口与端口的通信）
+
+`tcp`：首先A电脑发了一个数据到B电脑上，问一下B电脑在不在，B电脑回一个数据包告诉A电脑，可以接受数据。A电脑收到后再一次发数据到B电脑，告诉B电脑，我知道你在了，可以发数据了。通过三次传数据（通常说的三次握手），就能保证数据不会发生丢包。 （每次都要经过三次握手，效率比较低）-----文件下载（包不完整无法使用）
+
+`udp`：易实现，可靠性差。一旦数据发出，无法确定对方是否收到。可以会发现在数据丢包。-----发送QQ信息（发送失败在重发一次）
+
+**网络层**：ip icmp
+
+（主机与主机的通信）互联网是无数子网共同组成的，链接层的处理方式效率太低，所以有了IP协议指定哪一个子网。
+
+IP地址（0，0，0，0~255，255，255，255）32位二进制（4段十进制）组成，前24位是子网部分，后8位是主机部分。
+
+**链接层**：‘以太网’协议，单纯0和1没有任何意义，确定了0和1的分组方式。
+网卡（MAC地址）将数据包发送到网络中某一个子网中的指定网卡（MAC地址），规定数据包的定义，网卡的MAC地址，广播的发送方式。
+
+**实体层**：电缆、光缆、无线电波......
+
+数据包：
+
+![MacDown logo](../../../assets/results/afterall/2017040803.png)
+
+`http`：超文本传输协议（hyper text transfer protocol）
+
+`tcp`：传输控制协议（transmission control protocol）
+
+`udp`：用户数据报协议（user data protocol）
+
+## 二、http组成部分
+
+http协议用于从www服务器传输超文本到本地浏览器的应用层传输协议，它通常是承载于tcp协议之上，并且该协议是一种基于请求/响应模式的无状态的协议，由万维网（www）和Internet工作小组IETF于1990年定义1.0版本，目前1.1版本。
+
+在浏览器地址栏输入地址回车发生了什么：
+
+![MacDown logo](../../../assets/results/afterall/2017040802.png)
+
+1.1版会让服务器保持一定时间，大概等所有请求都响应完成在断开连接，不需要每个请求都跑上面四个过程。
+
+**http请求组成部分**
+
+1、请求行（GET/HTTP/1.1）
+
+	...
+	POST 在Request-URL所标识的资源后附加新的数据
+	GET 请求获取Request-URL所标示的资源（表单提交）
+	...
+
+2、请求（报）头
+
+	...
+	Host:www.qq.com
+	User-Agent:
+	Cookie:
+	...
+
+3、空行
+
+4、请求体（请求正文）：一般是向服务器提交的数据
+
+**http响应组成部分**
+
+1、状态行（HTTP/1.1 200 OK）
+
+	状态码可能的取值：
+	1xx:指示信息-表示请求已接收，继续处理
+	2xx:成功-表示请求已被成功接收，并且响应
+	3xx:重定向-要完成请求必须进行更进一步的操作
+	4xx:客户端错误-请求有语法错误或请求无法实现
+	5xx:服务器端错误-服务器未能实现合法的请求
+
+2、响应头
+	
+	...
+	Server:Apache/2.4.7(Ubuntu)
+	有可能是：
+	`clustered web server(cws)` 集群web服务器
+	...
+
+3、空行
+
+4、消息体（响应正文）：服务器响应给浏览器的数据
+
+## 三、Node.js
+
+**JavaScript**
+
+早期，JS是由网景公司开发出来的，当时它想为它自己网站（导航者）开发一套执行的脚本语言，实现一些简单的表单验证。当时不叫JavaScript叫LiveScript。然后由于网景公司和sun公司（java）合作，它借鉴一些Java的语言特点，所以网景公司就把LiveScript改成JavaScript。而当时这个微软公司也可以意识到这个web方向潜力巨大，它也想占一块市场，它也针对它的IE开发一种语言叫jscript。基本上是从JavaScriptcopy过来的。当时这个网景公司觉得和IE的竞争比较大，所以它把这个JavaScript贡献出来了，贡献给了ECMA，让它来把脚本语言规范化。浏览器是通过JS引擎来解析JS代码，而不同浏览器有不同的JS引擎。
+	IE（chakra）	火狐（spidermonky）	chrome（v8）	safari（nitro）<span class="error">JS能否脱离浏览器执行？</span>
+Ryan dahl 想开发一个JS引擎成本比较大，于是他就借助V8引擎（所有引擎当中执行效率最高的引擎），对它进行了一系列封装，生成一个运行平台（Nodejs）。
+
+**Node.js**
+
+> 概念
+
+Node.js是一个基于Chrome v8引擎建立的javascript运行平台，用于搭建响应速度快，易于扩展的网络应用，Node.js使用事件驱动，非阻塞i/o模型而使得其轻量和高效。
+
+	响应速度快和易于扩展
+	我们用Node.js搭建一个网络web应用，不需要我们去写些很复杂的代码，因为rd这个人早就封装好了一套库。我们直接基于它封装的库就能开发出网络应用。
+
+> 历史
+
+09年5月RD在Github上发布了最初版本的部分node.js包
+
+11年7月在微软的支持下发布Windows版本
+
+> 特点
+
+**一个人所有事情一块进行**
+
+	1、异步I/O
+	2、事件与回调
+	3、单纯程
+	4、夸平台（mac linux windows）
+	
+> 作用
+
+	1、开发web应用
+	2、命令行
+	3、桌面图形应用程序
+	
+> 下载与安装 
+	
+[基于node.js开发的框架](http://www.npmjs.com)[http://www.npmjs.com]
+	
+[node.js官网](http://nodejs.org)[http://nodejs.org]
+	
+## 四、helloworld实例
+
+**命令行打印**
+
+	// e/hello.js
+	function fun() {
+		console.log("hello javascript");
+	}
+	fun();
+	
+	// windows命令行输入
+	e:
+	dir
+	node hello.js
+	// 控制台输出
+	hello javascript
+	
+**web应用打印**
+
+	// e/hello.js
+	// 1.导入http模块
+	var http = require("http");
+	
+	// 2.创建server实例
+	var server = http.createServer(function(req,resp){
+		console.log("hello server");
+		// 将字符串写入resp
+		resp.write("hello browser");
+		// 发送
+		resp.end();
+	})
+	
+	// 3.启动服务并监听端口
+	server.listen("3000", function(err){
+		if(!err){
+			console.log("start success! at 3000");
+		}
+	})
+	
+	// 浏览器中输http://localhost:3000
+	// 浏览器中输出
+	hello browser
+	
+## 五、模块
+
+> JS在浏览器中运行
+
+遵循ECMA标准，这个标准只是规定了JS代码它的一些基本语法，循环，判断还有定义变量以及JS对dom,bom的接口标准。
+
+> JS在后台（node.js）运行
+
+Node.js之所以能开发后台应用，因为遵循commonjs标准（拥有API 模块 包的概念）。
+
+**模块可以理解为一个有独立功能的文件**
+
+	// db.js
+	exports.add = function(){
+		console.log("添加数据");
+	}
+	module.exports.modifi = function(){
+		console.log("修改数据");
+	}
+	// file.js
+	function read(path) {
+		console.log("对“+path+"文件读取");
+	}
+	exports.read = read;
+	
+	// test.js
+	var file = require("./file.js");
+	var db = require("./db.js");
+	
+	file.read("d:/");
+	db.add();
+	
+引用是require，导出exports，exports最终都会综合到module.exports一块导出。
+
+<span class="error"> 通过模块可以很好的解决同一个作用域里变量之前的重名和代码之前的依赖关系 </span>
+
+## 六、包
+
+**包如何定义-理解为一个文件夹**
+
+	// 目录结构
+	-demo
+	--html
+	--node_modules
+	*****************包 S
+	----m_p+
+	------bin+
+	-------demo.exe
+	------doc
+	------lib+
+	-------db+
+	--------db.js
+	-------file+
+	--------file.js
+	------test
+	------index.js
+	------package.json
+	******************包 E
+	--app.js
+
+> 分析一下
+
+	bin: 包里用来存储二进制代码的（如C语言编译好的模块）
+	doc: 存储文档目录，说明这个包有哪些功能
+	lib: js编写的核心模块存储 
+	// db.js
+	exports.add = function(){}
+	// file.js
+	function write() {}
+	exports.write = write;
+	test: 提供测试用的JS
+
+> index.js
+
+	var file = require('./lib/file/file.js');
+	var db = require('./lib/db/db.js');
+	var m = {};
+	m.add_db = db.add;
+	...
+	m.write_file = file.write;
+	exports = module.exports = m;
+
+> package.json
+
+	{
+		"name": "m_p",
+		"version": "0.0.2",
+		"discription": "this is a test",
+		"keywords": [
+			"test"
+		],
+		"engine": "chrome v8",
+		"author": {
+			"name": "xiao"
+		},
+		"bin":"",
+		"main":"index.js"
+	}
+	
+keywords: 搜索包时，可能通过这些关键字
+main: 整个包的入口文件（不设置NODE.JS默认也会在目录下找index.js）
+	
+**包如何使用**
+	
+	// app.js
+	var mp = require("m_p");
+	mp.add_db();
+	mp.write_file();
+
+**包的管理**
+	
+	npm // 查看所有命令
+	npm help show //查看命令的使用
+	
+	// 发布包到网站(http://www.npmjs.com)上
+	npm login（登录用户） / npm adduser (注册用户)
+	npm whoami（查看用户）
+	npm publish m_p（发布包）
+	
+	// 不想给别人使用
+	npm unpublish m_p@0.0.4
+	
+	// 安装npm包（如express）
+	
+	npm install express（默认安装在当前目录下node_modules）	npm install express –g（全局安装）
+
+> 全局安装并不是说在任何文件下不需要导入这个包，而是会自动将包中的bin目录路径配制到环境变量path中。
+
+	npm logout（退出）
+	npm whoami
+	
+## 七、http系统模块
+
+**http客户端**
+
+> 写一个执行JS，模拟前端浏览器向后台发请求
+
+	// client.js
+	var http = require("http");
+	// 发送数据
+	var data = "hello server";
+	// 请求参数
+	var options = {
+	host: '127.0.0.1',
+	port:3000,
+	method:'POST',
+	headers: {
+		'Content-Type':'application/x-www-form-urlencoded',
+		'Content-Length':data.length
+	}
+	};
+	// 回调
+	var requestCallback = function(im){
+	var serverData = "";
+	im.on("data",function(data){
+		serverData += data;
+	})
+	im.on("end",function(){
+		console.log("client:"+serverData);
+	})
+	} 
+	// 发送请求
+	var req = http.request(options,requestCallback);
+	
+	// 注册出错时的事件
+	req.on('error',function(e){
+		console.log(e.message);
+	})
+	// 写入数据
+	req.write(data);
+	// 发送数据
+	req.end();
+		
+	=======================
+
+	// server.js
+	// 创建服务并监听事件
+	http.createServer(function(req,res){
+		console.log(req);// IncomingMessage{}类
+		console.log("url:"+req.url);
+		console.log("请求方式:"+req.method);// POST
+		console.log("状态码:"+req.statusCode);
+		console.log(req.headers);
+		/*
+		{ 
+			'content-type': 'application/x-www-form-urlencoded',
+			'content-length': '12',
+			host: '127.0.0.1:3000',
+			connection: 'close' 
+    	}
+		*/
+		// 判断是否为POST请求 write数据data通过流的方式来获取
+		if(req.method.toUpperCase() == 'POST'){
+			var postData = "";
+			req.on("data", function(data){
+				postData += data;
+			})
+			req.on("end", function(){
+				console.log("server:"+postData);
+			})
+		}else if(req.method.toUpperCase() == 'GET') {
+			console.log("暂时不处理");
+		} else {
+			console.log("其他请求");
+		}
+		res.writeHead(200,{'Content-Type':'text/plain;charset=utf-8'});
+		res.write("hello client");
+		res.end();
+	}).listen(3000,function(){
+		console.log("listen on port 3000");
+	})	
+
+**http服务端**
+
+> 搭建一个服务器，用于响应请求
+
+	var http = require("http");
+	var server = http.createServer();
+	server.on("request",function(){
+		console.log('接收到请求');
+	});	
+	server.listen(3000,function(){
+		if(err!=null){
+			console.log("监听3000端口失败！启动失效！");
+		}else{
+			console.log("服务器启动成功！监听3000端口");
+		}
+	})
+	
+## 八、服务器实例
+
+**res.write()**
+	
+	var http = require("http");
+	http.createServer(function(req,res){
+		// 服务器响应
+		res.writeHead(200,{"Content-type":"text/html;charset=utf-8"});
+		res.write("<html>"+
+			"<head></head>"+
+			"<body><p>这是个段落</p></body>"+
+			"</html>");
+		res.end();
+	}).listen(3000,function(){
+		console.log("启动监听3000端口");
+	});
+	
+开发一个服务器，这个服务器应该具有一些功能
+
+	1、解析url并且验证
+	2、解析客户端的参数（get/post）
+	3、响应静态文件
+	4、调用用户的组件处理业务逻辑
+	5、保存用户状态
+	6、文件的上传与下载
+	
+**fs实现**
+
+> 项目结构
+
+	-css
+	--main.css
+	-html
+	--index.html
+	-js
+	--main.js
+	-server.js
+
+> index.html
+
+	<html lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8"/>
+		<title>这是一个测试页面</title>
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+	<body>
+		<p>下面是一张图片</p>
+		<form action="http://localhost:3000/html/index.html" method="post" enctype="application/x-www-form-urlencoded">
+			username:<input type="text" name="username"/><br/>
+			password:<input type="text" name="password"/><br/>
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+	<script src="../js/main.js"></script>
+	</html>
+
+> server.js
+
+浏览器地址栏目中输入
+
+输入：http://127.0.0.1:3000/html/index.html
+
+输出：req.method  GET
+
+	var http = require("http");
+	var fs   = require("fs");
+	var qs   = require("querystring");
+	var url  = require("url");
+	
+	
+	// 创建一个服务器
+	var server = http.createServer(function(req,res){
+		console.log(req);
+		// 验证请求资源
+		if(validateExName(req)) {
+			// 解析请求参数
+			parseParam(req);
+			// GET请求在这里打印
+			console.log(req.param);
+			// 响应静态文件
+			readStaticFile(req,res);
+		}else{
+			res.writeHead(404,{"Content-type":"text/plain;charset=utf-8"});
+			res.write("file not found");
+			res.end();
+		}
+	});
+	
+	
+	// 监听3000端口
+	server.listen(3000,function(err){
+		if(!err){
+			console.log("服务器启动成功，监听3000端口");
+		}
+	});
+	
+	
+	// 验证请求文件后缀名
+	function validateExName(req){
+		var pathName = url.parse(req.url,true).pathname;
+		var exName = pathName.substring(pathName.indexOf("."));
+		return ".html.jpg.png.css.js.gif".indexOf(exName)>=0;
+	}
+	
+	
+	// 封装参数
+	function parseParam(req) {
+		if(req.method.toUpperCase()=="POST"){
+			var postData = "";
+			req.on("data", function(data){
+				postData += data;
+			});
+			req.on("end", function(){
+				// username=xiaoming&pwd=123
+				req.param = qs.parse(postData);
+				// POST请求在这里打印，因为它是异步的
+				console.log(req.param);
+			})
+		}else if(req.method.toUpperCase()=="GET") {
+			req.param = url.parse(req.url,true).query;
+		}
+	};
+	
+	
+	// 解析表态文件
+	function readStaticFile(req,res) {
+		var pathName = url.parse(req.url).pathname;
+		// ./html/index.html
+		if(fs.existsSync("."+pathName)){
+			fs.createReadStream("."+pathName).pipe(res);
+		}else{
+			res.wirteHead(404,{"Content-type":"text/plain;charset=utf-8"});
+			res.write("file not found");
+			res.end();
+		}
+	}
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
