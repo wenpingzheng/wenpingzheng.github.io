@@ -484,6 +484,8 @@ main: 整个包的入口文件（不设置NODE.JS默认也会在目录下找inde
 
 输出：req.method  GET
 
+请求一般分POST/GET  传请求头信息和请求体数据（通过流的形式传on()）
+
 	var http = require("http");
 	var fs   = require("fs");
 	var qs   = require("querystring");
