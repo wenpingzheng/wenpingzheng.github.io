@@ -13,7 +13,6 @@ tag : node
 	2、document.domain跨子域
 	3、window.name跨域
 	4、使用HTML5中新引进的window.postMessage方法来跨域传送数据
-	5、总结
 	
 这里说的js跨域是指通过js在不同的域之间进行数据传输或通信。
 
