@@ -5,7 +5,7 @@ date  :   2017-04-19 07:13:35
 img   : "../../../../../assets/images/1.png"
 author: "WP"
 intro : js在不同的域之间进行数据传输或通信
-tag : node
+tag : js
 ---
 
 	// 目录
