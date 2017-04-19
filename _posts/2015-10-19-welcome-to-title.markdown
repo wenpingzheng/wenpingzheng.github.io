@@ -1,18 +1,15 @@
 ---
 layout: get
-title :  "前端编码规范"
+title :  "前端开发准备步骤"
 date  :   2015-10-19 11:53:30
 img   : "../assets/images/bb20151031.png"
 author: "WP"
-intro : "不规范，就捣乱。为了提高团队协作效率，便于后台人员添加功能及前端后期优化维护，输出高质量的文档，特总结此规范文档，本规范文档一经确认，前端开发人员必须按本文档规范进行前台页面开发。"
+intro : "开发前需要做哪些准备工具了？"
 tag: js
 ---
-这个地方是我写的正文内容...
-一、
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+
+一、安装node.js（http://nodejs.cn/download/）（npm也就安装好了 ）
+
+二、安装git（https://git-for-windows.github.io）（bash也就安装好了 ，设置字体Consolas）
+
+三、U盘（Win软件安装/Mac软件安装）

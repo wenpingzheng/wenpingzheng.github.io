@@ -7,8 +7,6 @@ author: "WP"
 intro : "触摸滑动已经成为移动端开发的常用功能，我们这里通过自己封装，或者直接选用轻量级的移动设备触控滑块的JS框架改写出几个常用的样例，供日后的你使用。"
 tag: mobile
 ---
-###<a href="javascript:void(0)" class="title">案例一</a>
-
 
 >效果图
 
@@ -20,7 +18,7 @@ tag: mobile
 
 >代码-DOM
 
-#####滑动样例一
+## 滑动样例一
 
 	<div class="swiper-container">
 	    <div class="swiper-wrapper">
@@ -31,7 +29,7 @@ tag: mobile
 	    </div>
 	</div>
 
-#####滑动样例二
+## 滑动样例二
    
     <div class="swiper-container" style="margin-top:20px;">
         <!-- 查看所有内容 -->
@@ -46,7 +44,7 @@ tag: mobile
         </div>
     </div>  
      
-#####滑动样例三
+## 滑动样例三
 
     <div class="swiper-container" style="margin-top:20px;">
         <div class="swiper-wrapper">
@@ -59,7 +57,7 @@ tag: mobile
         </div>
     </div>
     
->代码-CSS
+**代码-CSS**
 
 	.swiper-container {
         width: 100%;
@@ -127,7 +125,7 @@ tag: mobile
         display:block;
     }
     
->代码-JS
+**代码-JS**
 		
 	// navContent
 	var getNavcon = function(obj){
