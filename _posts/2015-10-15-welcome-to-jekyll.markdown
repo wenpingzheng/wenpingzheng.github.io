@@ -8,7 +8,7 @@ intro : "Celebrate with Family and Friends--He is turning sixteen years old so i
 tag: english
 ---
 
->Dealing with the Weather
+**Dealing with the Weather**
 
 * What is the weather like outside?
 
@@ -25,7 +25,7 @@ tag: english
 * Well, it's <b class="error">supposed</b> to be `sunny` tomorrow. but `cloudy` on `Thursday`. I don't know about the weekend.
 
 
->Planning to Meet
+**Planning to Meet**
 
 * Do you have any plans for tonight?
 
@@ -52,7 +52,7 @@ tag: english
 * <b class="error">Great</b>! I will see you there.  
 
 
-> Describe Your Daily Schedule
+**Describe Your Daily Schedule**
 
 * I `always` get up around 6am, so I can do my <b class="error">workout</b> and get the children ready for school. Then, I come to work, and drive back home around 7pm. what about you?
 
