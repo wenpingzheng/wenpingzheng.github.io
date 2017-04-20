@@ -9,6 +9,33 @@ tag : node
 ---
 
 
+	// 目录
+	一、中间件
+	二、路由
+	三、request
+	四、response
+	五、templates
+	六、stylus、sass、less
+	七、session、form
+
+## 介绍
+
+> express特点
+
+**性能好：**（express不对nodejs已有的特性进行二次抽象，只是在它基础之上扩展了web应用所需的基础功能）nodejs对文件、字符串、流等操作都封装了一套API，express不是在这些API基础之上进一步封装。它只是对nodejs的http模块进行了一个扩展，使得nodejs开发web应用更加方便，更加快捷。所以说它不会影响nodejs性能，只是方便我们开发web应用而已。
+	**功能多：**（丰富的HTTP快捷方法（方便处理各种请求）和好多任意排列组合的connect中间件）
+**简单易学习：**（API文档完整易懂，网上案例也比较多）
+
+> 历史
+
+2010-01-03陆续发布了四个版本，3和4版变化比较大，3版的中间件基本上都有connect框架的，第4版不在依赖connect。
+
+> 学习网站
+
+http://www.expressjs.com.cn> helloworld例子
+
+	var express = require('express');	var app = express();	http.createServer(app);	// 处理用户请求（路由）	app.get("/demo",function(){		console.log("hello world");		res.send("hello browser");		res.end();	}) 	// 监听3000端口	app.listen(3000);	/*	var server = http.createServer(function(req,res){		console.log("hello server");	});	server.listen(3000);	*/
+
 ## 一、中间件
 
 > app.use([path],function)
@@ -26,8 +53,11 @@ tag : node
 
 npm install
 
-**代码：**
+<span class="error">中间件分为默认、自定义、第三方</span>
 
+**代码：**
+	
+	// 默认 自定义
 	var express = require('express');
 	var app = express();
 	
@@ -58,7 +88,9 @@ npm install
 		response.end("404 not found!\n");
 	})
 	app.listen(1234,'localhost');
-	
+
+> 第三方提供的中间件
+	http://blog.fens.me/nodejs-connect/	// 控制台打印日志处理中间件	app.use(express.logger());	// post方式提交时请求数据解析	app.use(express.bodyParser());	console.log(req.body); // {name:'xiaoming',pwd:'1234'}	// 解析get方式提交的数据	app.use(express.query());	// cookie解析	app.use(express.cookieParser());	// 启用session管理用户状态 用户数据一般保存在服务器端 每个用户有一个session	// 不同的cookie对应不同的session，所以一般先解析cookie	app.use(express.session({		secret:'keyboard cat',		key:'sid', // cookie的名称		cookie:{secure:true}	}))	// 网站图标处理中间件	app.use(express.favicon('图标地址'))	注意：	第4版中间件使用	var bodyParser = require('body-parser');	app.use(bodyParser.urlencoded({extended:true}));	app.use(bodyParser.json());
 	
 static是express自带的唯一一个中间件；解析所有静态文件。
 
@@ -144,7 +176,15 @@ index.html和hello.html都放在public目录下
 	
 	app.listen(1234,'localhost');
 	
+**其它**
+	
+1、app.all('')：能处理任意任意请求类型 
+2、一个路径处理多个请求方式
+	app.route("/parma")      .get(function(req,res,next){      		req.user = req.query;          next();       })      .post(function(req,res,next){      		req.user = req.query;          next();       })       .all(function(req,res,next){      		req.send(req.user);          res.end();       }) 
+
 ## 三、request
+
+> 当每个请求到达服务器时，nodejs会为请求创建一个请求对象（request）,该对象包含客户端提交上来的数据，包括请求头（请求主机地址，请求方式，客户浏览器的一些信息），消息体（主要是用户提交上来的数据）
 
 	1、req.params
 	2、req.query
@@ -209,6 +249,8 @@ url?后面带的参数获取（GET）
 
 
 ## 四、response
+
+> 客户在每次请求到达服务器的时候，都会创建一个请求对象（request）和一个响应对象（response）,而响应对象主要负责将服务器的数据响应客户端（浏览器），这些数据包含（响应头，消息体），响应头里面主要包含浏览器解析数据需要的一些参数用户不可见，而消息体包含用户数据。
 
 	1、res.render
 	2、res.locals
@@ -492,7 +534,9 @@ response.header参数设置
 	
 	app.listen(1234,'localhost');
 
+**代码下载**
 
+[expressjs](https://github.com/wenpingzheng/express-js)[https://github.com/wenpingzheng/express-js]
 
 
 
