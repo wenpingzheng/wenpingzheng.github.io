@@ -95,7 +95,11 @@ npm install
 	
 static是express自带的唯一一个中间件；解析所有静态文件。
 
-比如 访问  `http://localhost:1234/index.html`、`http://localhost:1234/hello.html`
+比如 访问 
+
+`http://localhost:1234/index.html`
+
+`http://localhost:1234/hello.html`
 
 index.html和hello.html都放在public目录下
 
@@ -537,7 +541,9 @@ response.header参数设置
 
 **代码下载**
 
-[expressjs](https://github.com/wenpingzheng/express-js)[https://github.com/wenpingzheng/express-js]
+[expressjs](https://github.com/wenpingzheng/express-js)
+
+[https://github.com/wenpingzheng/express-js]
 
 
 

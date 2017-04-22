@@ -24,11 +24,25 @@ tag : js
 
 ==================================
 
-http://news.company.com/dir/other.html         | 失败 | 主机名不同
-http://store.company.com/dir2/other.html       | 成功 |
-http://store.company.com/dir/inner/another.html| 成功 | 
-https://store.company.com/secure.html          | 失败 | 协议不同
-http://store.company.com:81/dir/etc.html       | 失败 | 端口不同
+http://news.company.com/dir/other.html         
+
+| 失败 | 主机名不同
+
+http://store.company.com/dir2/other.html       
+
+| 成功 |
+
+http://store.company.com/dir/inner/another.html
+
+| 成功 | 
+
+https://store.company.com/secure.html          
+
+| 失败 | 协议不同
+
+http://store.company.com:81/dir/etc.html       
+
+| 失败 | 端口不同
 
 ==================================
 
