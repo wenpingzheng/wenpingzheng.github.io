@@ -56,7 +56,6 @@ http://store.company.com:81/dir/etc.html
 
 >前端引入   
 
-	
 	<script>
 	function dosomething(jsondata){
 	    // 处理获得的JSON数据
