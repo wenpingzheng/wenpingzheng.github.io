@@ -1,0 +1,44 @@
+---
+layout: post
+title :  "input[type=number]&form(action)"
+date  :   2017-05-04 08:11:35
+img   : "../../../../../assets/images/1.png"
+author: "小郑子"
+intro : "今天在处理一个表单提交的需求时，发现一个有趣的问题"
+tag : node
+---
+
+
+今天在处理一个表单提交的需求时，发现一个有趣的问题。 
+
+情况是这样的： 
+
+我需要用AJAX处理一个表单提交，这个表单里有几个input[type=number]的元素，然而，在用AJAX提交表单时，我既要阻止表单的默认提交又要让这个input[type=number]的step属性(不符合填写规则时)阻止表单提交功能生效。
+ 
+下面针对这个问题我开始了一段程序的开发之旅：
+ 
+## No1：e.prevent() 
+
+可能大家都会想到这个法，阻止默认提交，现实状况是使用这个方法将input[type=number]的step属性默认提示功能也阻止掉了，也就是说，当我们填入一个不符合规则的数据时，input[type=number]不会给出提示。很显然，这不是我想要的… 
+
+## No2：return false 
+
+这个也能阻止action的提交，但是又有一个问题来了，我们的表单提交是AJAX的，是异步的，return false放在AJAX前面，将无法提交数据，放在AJAX后面，将起不到阻止默认提交的作用。 
+
+## No3：javascript:; 
+
+在form表单的action是直接使用“javascrtipt:;”，这样即没有阻止input[type=number]默认提示阻止提交功能又禁止的默认提交。 
+
+总结：小时候的梦想是当物理学家，长大了才发现踏实的活着才是王道。
+
+
+
+
+
+
+ 
+
+
+
+
+
