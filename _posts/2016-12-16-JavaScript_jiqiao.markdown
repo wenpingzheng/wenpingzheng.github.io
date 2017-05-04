@@ -15,6 +15,15 @@ tag: js
 **2、使用===取代==**
 
 == 和！=操作符会在需要的情况下自动转换数据类型。但 ===和！==不会，它们会同时比较值 和数据 类型，这也使用它们要比==和！=快。
+	
+	[10] === 10 // false
+	[10] == 10  // true
+	'10' == 10  // true
+	'10' === 10 // false
+     [] == 0  // true
+     [] === 0 // false
+     '' == false // true but true == 'a' is false
+     '' === false // false
 
 **3、undefined、null、0、false 、NaN、空字符串的逻辑均为false。**
 
@@ -33,6 +42,11 @@ tag: js
 
 
 **6、小心使用typeof、instanceof和contructor**
+
+	var arr = ["a","b","c"];
+	typeof arr; // return "object"
+    arr instanceof Array // true
+	arr.constructor(); // []
 
 **7、使用自调用函数**
 
