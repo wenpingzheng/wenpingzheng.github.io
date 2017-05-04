@@ -5,7 +5,7 @@ date  :   2017-05-04 08:11:35
 img   : "../../../../../assets/images/1.png"
 author: "小郑子"
 intro : "今天在处理一个表单提交的需求时，发现一个有趣的问题"
-tag : node
+tag : js
 ---
 
 
